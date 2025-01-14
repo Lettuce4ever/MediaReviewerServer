@@ -17,7 +17,7 @@ Username nvarchar(50) Not Null,
 Password nvarchar(50) Not Null,
 Firstname nvarchar(256) Not Null,
 Lastname nvarchar(256) Not Null,
-Email nvarchar(50) Not Null,
+Email nvarchar(50) Unique Not Null,
 IsAdmin bit Not Null,
 Image nvarchar(Max)
 )
@@ -95,3 +95,23 @@ ContentID int Not Null Foreign Key References Contents(ContentID),
 GenreID int Not Null Foreign Key References Genres(GenreID)
 Primary Key (ContentID, GenreID)
 )
+
+-- Create a login for the admin user
+CREATE LOGIN [MediaReviewerAdminLogin] WITH PASSWORD = 'pass031206';
+Go
+
+-- Create a user in the TasksManagementDB database for the login
+CREATE USER [MediaReviewerUser] FOR LOGIN [MediaReviewerAdminLogin];
+Go
+
+-- Add the user to the db_owner role to grant admin privileges
+ALTER ROLE db_owner ADD MEMBER [MediaReviewerAdminUser];
+Go
+--so user can restore the DB!
+ALTER SERVER ROLE sysadmin ADD MEMBER [MediaReviewerAdminLogin];
+Go
+
+--EF Code
+/*
+scaffold-DbContext "Server = (localdb)\MSSQLLocalDB;Initial Catalog=MediaReviewerDB;User ID=MediaReviewerAdminLogin;Password=pass031206;" Microsoft.EntityFrameworkCore.SqlServer -OutPutDir Models -Context MediaReviewerDbContext -DataAnnotations -force
+*/
