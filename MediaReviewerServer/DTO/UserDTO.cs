@@ -1,4 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿            using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using MediaReviewerServer.Models;
 namespace MediaReviewerServer.DTO
@@ -12,7 +12,7 @@ namespace MediaReviewerServer.DTO
         public string Lastname { get; set; }
         public string Email { get; set; }
         public bool IsAdmin { get; set; }
-        public string Image {  get; set; }
+        public string Image {  get; set; }  
 
         public UserDTO()
         {
