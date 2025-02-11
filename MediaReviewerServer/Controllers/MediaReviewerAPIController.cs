@@ -22,7 +22,7 @@ namespace MediaReviewerServer.Controllers
         }
 
         [HttpPost("login")]
-        public IActionResult Login([FromBody] DTO.LoginInfo loginDto)
+        public IActionResult Login([FromBody] DTO.LoginDTO loginDto)
         {
             try
             {
