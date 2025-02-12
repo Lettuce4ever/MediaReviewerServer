@@ -61,7 +61,7 @@ namespace MediaReviewerServer
             // And you should press "allow" when windows firewall prompte a message after running the server for the first time!
             //app.Urls.Add("http://*:5110");
             //app.Urls.Add("https://*:7012");
-
+            app.MapControllers(); //Map all controllers classes
 
             app.Run();
         }
