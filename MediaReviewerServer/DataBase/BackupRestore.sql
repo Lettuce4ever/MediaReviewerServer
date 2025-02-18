@@ -1,4 +1,5 @@
 ﻿
+
 Use master
 Go
 
@@ -9,3 +10,7 @@ Go
 --so user can restore the DB!
 ALTER SERVER ROLE sysadmin ADD MEMBER [MediaReviewerAdminLogin];
 Go
+
+Create Database MediaReviewerDB
+Go
+

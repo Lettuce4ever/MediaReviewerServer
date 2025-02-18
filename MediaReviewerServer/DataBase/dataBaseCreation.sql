@@ -119,4 +119,5 @@ scaffold-DbContext "Server = (localdb)\MSSQLLocalDB;Initial Catalog=MediaReviewe
 INSERT INTO Users(Username, Password, Firstname, Lastname, Email, IsAdmin) Values('TheGal', 'Gal031206', 'Gal', 'Klug', 'galkluger@gmail.com', 1)
 INSERT INTO Users(Username, Password, Firstname, Lastname, Email, IsAdmin) Values('TheShahar', 'Shahar031206', 'Shahar', 'Klug', 'shaharkluger@gmail.com', 0)
 INSERT INTO Users(Username, Password, Firstname, Lastname, Email, IsAdmin) Values('TheRan', 'Ran031206', 'Ran', 'Klug', 'rankluger@gmail.com', 0)
+INSERT INTO Users(Username, Password, Firstname, Lastname, Email, IsAdmin) Values('TheRan_AFTERBU', 'Ran1111031206', 'Ran', 'Klug', 'rankluger1111@gmail.com', 0)
 Select*from Users

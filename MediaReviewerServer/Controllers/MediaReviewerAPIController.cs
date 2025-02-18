@@ -78,7 +78,7 @@ namespace MediaReviewerServer.Controllers
         [HttpGet("Backup")]
         public async Task<IActionResult> Backup()
         {
-            string path = $"{this.webHostEnvironment.WebRootPath}\\..\\DBScripts\\backup.bak";
+            string path = $"{this.webHostEnvironment.WebRootPath}\\..\\DataBase\\backup.bak";
 
             bool success = await BackupDatabaseAsync(path);
             if (success)
@@ -94,7 +94,7 @@ namespace MediaReviewerServer.Controllers
         [HttpGet("Restore")]
         public async Task<IActionResult> Restore()
         {
-            string path = $"{this.webHostEnvironment.WebRootPath}\\..\\DBScripts\\backup.bak";
+            string path = $"{this.webHostEnvironment.WebRootPath}\\..\\DataBase\\backup.bak";
 
             bool success = await RestoreDatabaseAsync(path);
             if (success)
@@ -111,6 +111,8 @@ namespace MediaReviewerServer.Controllers
         {
             try
             {
+                if (System.IO.File.Exists(path))
+                    System.IO.File.Delete(path);
 
                 //Get the connection string
                 string? connectionString = context.Database.GetConnectionString();
