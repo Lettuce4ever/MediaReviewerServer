@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using MediaReviewerServer.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics.CodeAnalysis;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 namespace MediaReviewerServer.Controllers
 {
     [Route("api")]
@@ -49,8 +49,8 @@ namespace MediaReviewerServer.Controllers
 
         }
 
-        [HttpPost("register")]
-        public IActionResult Register([FromBody] DTO.UserDTO userDto)
+        [HttpPost("signup")]
+        public IActionResult Signup([FromBody] DTO.UserDTO userDto)
         {
             try
             {
@@ -58,6 +58,7 @@ namespace MediaReviewerServer.Controllers
 
                 //Create model user class
                 Models.User modelsUser = userDto.GetModels();
+
                 context.Users.Add(modelsUser);
                 context.SaveChanges();
 
@@ -71,6 +72,112 @@ namespace MediaReviewerServer.Controllers
             }
 
         }
+
+        //Helper functions
+        #region Backup / Restore
+        [HttpGet("Backup")]
+        public async Task<IActionResult> Backup()
+        {
+            string path = $"{this.webHostEnvironment.WebRootPath}\\..\\DBScripts\\backup.bak";
+
+            bool success = await BackupDatabaseAsync(path);
+            if (success)
+            {
+                return Ok("Backup was successful");
+            }
+            else
+            {
+                return BadRequest("Backup failed");
+            }
+        }
+
+        [HttpGet("Restore")]
+        public async Task<IActionResult> Restore()
+        {
+            string path = $"{this.webHostEnvironment.WebRootPath}\\..\\DBScripts\\backup.bak";
+
+            bool success = await RestoreDatabaseAsync(path);
+            if (success)
+            {
+                return Ok("Restore was successful");
+            }
+            else
+            {
+                return BadRequest("Restore failed");
+            }
+        }
+        //this function backup the database to a specified path
+        private async Task<bool> BackupDatabaseAsync(string path)
+        {
+            try
+            {
+
+                //Get the connection string
+                string? connectionString = context.Database.GetConnectionString();
+                //Get the database name
+                string databaseName = context.Database.GetDbConnection().Database;
+                //Build the backup command
+                string command = $"BACKUP DATABASE {databaseName} TO DISK = '{path}'";
+                //Create a connection to the database
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    //Open the connection
+                    await connection.OpenAsync();
+                    //Create a command
+                    using (SqlCommand sqlCommand = new SqlCommand(command, connection))
+                    {
+                        //Execute the command
+                        await sqlCommand.ExecuteNonQueryAsync();
+                    }
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+
+        }
+
+        //THis function restore the database from a backup in a certain path
+        private async Task<bool> RestoreDatabaseAsync(string path)
+        {
+            try
+            {
+                //Get the connection string
+                string? connectionString = context.Database.GetConnectionString();
+                //Get the database name
+                string databaseName = context.Database.GetDbConnection().Database;
+                //Build the restore command
+                string command = $@"
+                USE master;
+                ALTER DATABASE {databaseName} SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
+                RESTORE DATABASE {databaseName} FROM DISK = '{path}' WITH REPLACE;
+                ALTER DATABASE {databaseName} SET MULTI_USER;";
+
+                //Create a connection to the database
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    //Open the connection
+                    await connection.OpenAsync();
+                    //Create a command
+                    using (SqlCommand sqlCommand = new SqlCommand(command, connection))
+                    {
+                        //Execute the command
+                        await sqlCommand.ExecuteNonQueryAsync();
+                    }
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+
+        }
+        #endregion
+
+
 
     }
 }

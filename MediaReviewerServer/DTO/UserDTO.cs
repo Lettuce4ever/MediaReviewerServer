@@ -12,39 +12,35 @@ namespace MediaReviewerServer.DTO
         public string Lastname { get; set; }
         public string Email { get; set; }
         public bool IsAdmin { get; set; }
-        public string Image {  get; set; }  
-
         public UserDTO()
         {
 
         }
 
-        public UserDTO(Models.User user)
+        public UserDTO(Models.User modelUser)
         {
-            this.UserID = user.UserId;
-            this.Username = user.Username;
-            this.Password = user.Password;
-            this.Firstname = user.Firstname;
-            this.Lastname = user.Lastname;
-            this.Email = user.Email;
-            this.IsAdmin = user.IsAdmin;
-            this.Image = user.Image;
+            this.UserID = modelUser.UserId;
+            this.Username = modelUser.Username;
+            this.Password = modelUser.Password;
+            this.Firstname = modelUser.Firstname;
+            this.Lastname = modelUser.Lastname;
+            this.Email = modelUser.Email;
+            this.IsAdmin = modelUser.IsAdmin;
         }
 
         public Models.User GetModels()
         {
-            Models.User user = new Models.User();
+            Models.User modelUser = new Models.User()
             {
-                UserID = this.UserID;
-                Username = this.Username;
-                Password = this.Password;
-                Firstname = this.Firstname;
-                Lastname = this.Lastname;
-                Email = this.Email;
-                IsAdmin = this.IsAdmin;
-                Image = this.Image;
-            }
-            return user;
+                UserId = this.UserID,
+                Username = this.Username,
+                Password = this.Password,
+                Firstname = this.Firstname,
+                Lastname = this.Lastname,
+                Email = this.Email,
+                IsAdmin = this.IsAdmin,
+            };
+            return modelUser;
         }
     }
 }

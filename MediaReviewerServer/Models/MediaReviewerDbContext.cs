@@ -39,7 +39,7 @@ public partial class MediaReviewerDbContext : DbContext
     {
         modelBuilder.Entity<Book>(entity =>
         {
-            entity.HasKey(e => e.ContentId).HasName("PK__Books__2907A87E85B108A9");
+            entity.HasKey(e => e.ContentId).HasName("PK__Books__2907A87E760E155F");
 
             entity.Property(e => e.ContentId).ValueGeneratedNever();
 
@@ -50,7 +50,7 @@ public partial class MediaReviewerDbContext : DbContext
 
         modelBuilder.Entity<Content>(entity =>
         {
-            entity.HasKey(e => e.ContentId).HasName("PK__Contents__2907A87ED2CDE172");
+            entity.HasKey(e => e.ContentId).HasName("PK__Contents__2907A87E75C00D93");
 
             entity.HasMany(d => d.Genres).WithMany(p => p.Contents)
                 .UsingEntity<Dictionary<string, object>>(
@@ -65,7 +65,7 @@ public partial class MediaReviewerDbContext : DbContext
                         .HasConstraintName("FK__GenresToC__Conte__3A81B327"),
                     j =>
                     {
-                        j.HasKey("ContentId", "GenreId").HasName("PK__GenresTo__D93FF82B8A699E22");
+                        j.HasKey("ContentId", "GenreId").HasName("PK__GenresTo__D93FF82B4570090A");
                         j.ToTable("GenresToContents");
                         j.IndexerProperty<int>("ContentId").HasColumnName("ContentID");
                         j.IndexerProperty<int>("GenreId").HasColumnName("GenreID");
@@ -74,12 +74,12 @@ public partial class MediaReviewerDbContext : DbContext
 
         modelBuilder.Entity<Genre>(entity =>
         {
-            entity.HasKey(e => e.GenreId).HasName("PK__Genres__0385055EE6028254");
+            entity.HasKey(e => e.GenreId).HasName("PK__Genres__0385055ED94D30A2");
         });
 
         modelBuilder.Entity<Movie>(entity =>
         {
-            entity.HasKey(e => e.ContentId).HasName("PK__Movies__2907A87E46063D54");
+            entity.HasKey(e => e.ContentId).HasName("PK__Movies__2907A87E72A279AB");
 
             entity.Property(e => e.ContentId).ValueGeneratedNever();
 
@@ -90,14 +90,14 @@ public partial class MediaReviewerDbContext : DbContext
 
         modelBuilder.Entity<Request>(entity =>
         {
-            entity.HasKey(e => e.RequestId).HasName("PK__Requests__33A8519A41D98811");
+            entity.HasKey(e => e.RequestId).HasName("PK__Requests__33A8519AC8A67CB0");
 
             entity.HasOne(d => d.User).WithMany(p => p.Requests).HasConstraintName("FK__Requests__UserID__37A5467C");
         });
 
         modelBuilder.Entity<Review>(entity =>
         {
-            entity.HasKey(e => e.ReviewId).HasName("PK__Reviews__74BC79AE2B66FA17");
+            entity.HasKey(e => e.ReviewId).HasName("PK__Reviews__74BC79AE07020300");
 
             entity.HasOne(d => d.Content).WithMany(p => p.Reviews).HasConstraintName("FK__Reviews__Content__34C8D9D1");
 
@@ -106,7 +106,7 @@ public partial class MediaReviewerDbContext : DbContext
 
         modelBuilder.Entity<Series>(entity =>
         {
-            entity.HasKey(e => e.ContentId).HasName("PK__Series__2907A87E2D323761");
+            entity.HasKey(e => e.ContentId).HasName("PK__Series__2907A87E600D4A6F");
 
             entity.Property(e => e.ContentId).ValueGeneratedNever();
 
@@ -117,7 +117,7 @@ public partial class MediaReviewerDbContext : DbContext
 
         modelBuilder.Entity<User>(entity =>
         {
-            entity.HasKey(e => e.UserId).HasName("PK__Users__1788CCACCEC740E0");
+            entity.HasKey(e => e.UserId).HasName("PK__Users__1788CCAC6EB547C7");
         });
 
         OnModelCreatingPartial(modelBuilder);

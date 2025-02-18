@@ -19,7 +19,6 @@ Firstname nvarchar(256) Not Null,
 Lastname nvarchar(256) Not Null,
 Email nvarchar(50) Unique Not Null,
 IsAdmin bit Not Null,
-Image nvarchar(Max)
 )
 
 Create Table Genres

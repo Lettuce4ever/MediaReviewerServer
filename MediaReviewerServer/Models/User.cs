@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace MediaReviewerServer.Models;
 
-[Index("Email", Name = "UQ__Users__A9D105344A57DB16", IsUnique = true)]
+[Index("Email", Name = "UQ__Users__A9D1053447EB025B", IsUnique = true)]
 public partial class User
 {
     [Key]
@@ -29,8 +29,6 @@ public partial class User
     public string Email { get; set; } = null!;
 
     public bool IsAdmin { get; set; }
-
-    public string? Image { get; set; }
 
     [InverseProperty("User")]
     public virtual ICollection<Request> Requests { get; set; } = new List<Request>();
