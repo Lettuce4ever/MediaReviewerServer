@@ -27,20 +27,15 @@ GenreID int Primary Key Identity,
 GenreName nvarchar(256) Not Null
 )
 
-Create Table Contents
+Create Table Movies
 (
-ContentID int Primary Key Identity,
-ContentName nvarchar(256) Not Null,
+MovieID int Primary Key Identity,
+MovieName nvarchar(256) Not Null,
 ReleaseYear int Not Null,
 Length int Not Null,
 Description nvarchar(1024) Not Null,
 Rating Float Not Null,
-Image nvarchar(Max) Not Null
-)
-
-Create Table Movies
-(
-ContentID int Primary Key Foreign Key References Contents(ContentID),
+Image nvarchar(Max) Not Null,
 Trailer nvarchar(Max) Not Null,
 Director nvarchar(256) Not Null,
 Star nvarchar(256) Not Null,
@@ -50,30 +45,12 @@ MultiStars bit Not Null,
 MultiWriters bit Not Null
 )
 
-Create Table Series
-(
-ContentID int Primary Key Foreign Key References Contents(ContentID),
-Trailer nvarchar(Max) Not Null,
-Creator nvarchar(256) Not Null,
-Star nvarchar(256) Not Null,
-Writer nvarchar(256) Not Null,
-MultiCreators bit Not Null,
-MultiStars bit Not Null,
-MultiWriters bit Not Null
-)
-
-Create Table Books
-(
-ContentID int Primary Key Foreign Key References Contents(ContentID),
-Author nvarchar(256) Not Null,
-MultiAuthors bit Not Null
-)
 
 Create Table Reviews
 (
 ReviewID int Primary Key Identity,
 UserID int Foreign Key References Users(UserID),
-ContentID int Foreign Key References Contents(ContentID),
+MovieID int Foreign Key References Movies(MovieID),
 Rating Float Not Null,
 Description nvarchar(1024) Not Null,
 ReviewDate Date Not Null
@@ -88,11 +65,11 @@ Description nvarchar(1024) Not Null,
 RequestDate Date Not Null
 )
 
-Create Table GenresToContents
+Create Table GenresToMovies
 (
-ContentID int Not Null Foreign Key References Contents(ContentID),
-GenreID int Not Null Foreign Key References Genres(GenreID)
-Primary Key (ContentID, GenreID)
+MovieID int Not Null Foreign Key References Movies(MovieID),
+GenreID int Not Null Foreign Key References Genres(GenreID) 
+Primary Key (MovieID, GenreID)
 )
 
 -- Create a login for the admin user

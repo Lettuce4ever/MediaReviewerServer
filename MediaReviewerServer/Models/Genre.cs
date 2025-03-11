@@ -17,5 +17,5 @@ public partial class Genre
 
     [ForeignKey("GenreId")]
     [InverseProperty("Genres")]
-    public virtual ICollection<Content> Contents { get; set; } = new List<Content>();
+    public virtual ICollection<Movie> Movies { get; set; } = new List<Movie>();
 }

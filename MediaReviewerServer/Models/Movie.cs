@@ -9,8 +9,22 @@ namespace MediaReviewerServer.Models;
 public partial class Movie
 {
     [Key]
-    [Column("ContentID")]
-    public int ContentId { get; set; }
+    [Column("MovieID")]
+    public int MovieId { get; set; }
+
+    [StringLength(256)]
+    public string MovieName { get; set; } = null!;
+
+    public int ReleaseYear { get; set; }
+
+    public int Length { get; set; }
+
+    [StringLength(1024)]
+    public string Description { get; set; } = null!;
+
+    public double Rating { get; set; }
+
+    public string Image { get; set; } = null!;
 
     public string Trailer { get; set; } = null!;
 
@@ -29,7 +43,10 @@ public partial class Movie
 
     public bool MultiWriters { get; set; }
 
-    [ForeignKey("ContentId")]
     [InverseProperty("Movie")]
-    public virtual Content Content { get; set; } = null!;
+    public virtual ICollection<Review> Reviews { get; set; } = new List<Review>();
+
+    [ForeignKey("MovieId")]
+    [InverseProperty("Movies")]
+    public virtual ICollection<Genre> Genres { get; set; } = new List<Genre>();
 }

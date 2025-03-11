@@ -15,8 +15,8 @@ public partial class Review
     [Column("UserID")]
     public int? UserId { get; set; }
 
-    [Column("ContentID")]
-    public int? ContentId { get; set; }
+    [Column("MovieID")]
+    public int? MovieId { get; set; }
 
     public double Rating { get; set; }
 
@@ -25,9 +25,9 @@ public partial class Review
 
     public DateOnly ReviewDate { get; set; }
 
-    [ForeignKey("ContentId")]
+    [ForeignKey("MovieId")]
     [InverseProperty("Reviews")]
-    public virtual Content? Content { get; set; }
+    public virtual Movie? Movie { get; set; }
 
     [ForeignKey("UserId")]
     [InverseProperty("Reviews")]

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace MediaReviewerServer.Models;
 
-[Index("Email", Name = "UQ__Users__A9D1053447EB025B", IsUnique = true)]
+[Index("Email", Name = "UQ__Users__A9D1053462727A85", IsUnique = true)]
 public partial class User
 {
     [Key]
