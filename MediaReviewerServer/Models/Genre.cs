@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace MediaReviewerServer.Models;
 
+[Index("GenreName", Name = "UQ__Genres__BBE1C339DAD52288", IsUnique = true)]
 public partial class Genre
 {
     [Key]

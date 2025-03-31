@@ -4,6 +4,7 @@ using MediaReviewerServer.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.Data.SqlClient;
+using System.Text.Json;
 namespace MediaReviewerServer.Controllers
 {
     [Route("api")]
@@ -95,6 +96,54 @@ namespace MediaReviewerServer.Controllers
                 return BadRequest(ex.Message);
             }
 
+        }
+
+        [HttpPost("addmovie")]
+        public IActionResult AddMovie([FromBody] DTO.MovieDTO movieDto)
+        {
+            try
+            {
+                
+                //Create model genre class
+                Models.Movie modelsMovie = movieDto.GetModels();
+
+                context.Movies.Update(modelsMovie);
+                context.SaveChanges();
+
+                //User was added!
+                DTO.MovieDTO dtoMovie = new DTO.MovieDTO(modelsMovie);
+                return Ok(dtoMovie);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
+        }
+
+        //Get api/getgenres
+        //This method is used to get all genres from the database and return a list of DTO.Genres
+        [HttpGet("getgenres")]
+        public IActionResult GetGenres()
+        {
+            try
+            {
+                List<DTO.GenreDTO> dtoGenres = new List<DTO.GenreDTO>();
+                List<Genre> modelgenres = context.Genres.ToList();
+                foreach (Genre var in modelgenres)
+                {
+                    dtoGenres.Add(new DTO.GenreDTO()
+                    {
+                        GenreId = var.GenreId,
+                        GenreName = var.GenreName
+                    });
+                }
+                return Ok(dtoGenres);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         //Helper functions

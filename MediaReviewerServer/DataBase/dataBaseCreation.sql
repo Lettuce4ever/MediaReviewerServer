@@ -98,3 +98,6 @@ INSERT INTO Users(Username, Password, Firstname, Lastname, Email, IsAdmin) Value
 INSERT INTO Users(Username, Password, Firstname, Lastname, Email, IsAdmin) Values('TheRan', 'Ran031206', 'Ran', 'Klug', 'rankluger@gmail.com', 0)
 INSERT INTO Users(Username, Password, Firstname, Lastname, Email, IsAdmin) Values('TheRan_AFTERBU', 'Ran1111031206', 'Ran', 'Klug', 'rankluger1111@gmail.com', 0)
 Select*from Users
+Select*from Genres
+Select*from Movies
+Select*from GenresToMovies
