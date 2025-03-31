@@ -73,6 +73,30 @@ namespace MediaReviewerServer.Controllers
 
         }
 
+        [HttpPost("addgenre")]
+        public IActionResult AddGenre([FromBody] DTO.GenreDTO genreDto)
+        {
+            try
+            {
+                HttpContext.Session.Clear(); //Logout any previous login attempt
+
+                //Create model genre class
+                Models.Genre modelsGenre = genreDto.GetModels();
+
+                context.Genres.Add(modelsGenre);
+                context.SaveChanges();
+
+                //User was added!
+                DTO.GenreDTO dtoGenre = new DTO.GenreDTO(modelsGenre);
+                return Ok(dtoGenre);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
+        }
+
         //Helper functions
         #region Backup / Restore
         [HttpGet("Backup")]

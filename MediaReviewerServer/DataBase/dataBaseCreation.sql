@@ -24,7 +24,7 @@ IsAdmin bit Not Null,
 Create Table Genres
 (
 GenreID int Primary Key Identity, 
-GenreName nvarchar(256) Not Null
+GenreName nvarchar(256) Unique Not Null
 )
 
 Create Table Movies
