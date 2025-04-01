@@ -36,3 +36,4 @@ public partial class User
     [InverseProperty("User")]
     public virtual ICollection<Review> Reviews { get; set; } = new List<Review>();
 }
+//הערה
