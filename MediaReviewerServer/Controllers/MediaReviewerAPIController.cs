@@ -146,6 +146,68 @@ namespace MediaReviewerServer.Controllers
             }
         }
 
+        //Get api/getmovies
+        //This method is used to get all movies from the database and return a list of DTO.Movies
+        [HttpGet("getmovies")]
+        public IActionResult GetMovies()
+        {
+            try
+            {
+                List<DTO.MovieDTO> dtoMovies = new List<DTO.MovieDTO>();
+                List<Movie> modelmovies = context.Movies.ToList();
+                foreach (Movie var in modelmovies)
+                {
+                    DTO.MovieDTO movieDTO = new DTO.MovieDTO()
+                    {
+                        MovieId = var.MovieId,
+                        MovieName = var.MovieName,
+                        ReleaseYear = var.ReleaseYear,
+                        Length = var.Length,
+                        Description = var.Description,
+                        Rating = var.Rating,
+                        Image = var.Image,
+                        Trailer = var.Trailer,
+                        Director = var.Director,
+                        Star = var.Star,
+                        Writer = var.Writer,
+                        MultiDirectors = var.MultiDirectors,
+                        MultiStars = var.MultiStars,
+                        MultiWriters = var.MultiWriters,
+                        Genres = new List<DTO.GenreDTO>(),
+                        Reviews = new List<DTO.ReviewDTO>()
+                    };
+                    foreach (Genre genre in var.Genres)
+                    {
+                        movieDTO.Genres.Add(new DTO.GenreDTO()
+                        {
+                            GenreId = genre.GenreId,
+                            GenreName = genre.GenreName
+                        });
+                    }
+                    foreach(Review review in var.Reviews)
+                    {
+                        movieDTO.Reviews.Add(new DTO.ReviewDTO()
+                        {
+                            ReviewId = review.ReviewId,
+                            UserId = review.UserId,
+                            MovieId = review.MovieId,
+                            Rating = review.Rating,
+                            Description = review.Description,
+                            ReviewDate = review.ReviewDate
+                        });
+                    }
+
+                    dtoMovies.Add(movieDTO);
+
+                }
+                return Ok(dtoMovies);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
         //Helper functions
         #region Backup / Restore
         [HttpGet("Backup")]
