@@ -148,7 +148,7 @@ INSERT INTO Genres(GenreName) Values('Historical Epic')
 INSERT INTO Genres(GenreName) Values('Period Drama')
 INSERT INTO Genres(GenreName) Values('Prison Drama')
 
-INSERT INTO Movies(MovieName, ReleaseYear, Length, Description, Rating, Image, Trailer, Director, Star, Writer, MultiDirectors, MultiStars, MultiWriters) Values('Iron Man', 2008, 126, 'After being held captive in an Afghan cave, billionaire engineer Tony Stark creates a unique weaponized suit of armor to fight evil.', -1, 'https://www.imdb.com/title/tt0371746/mediaviewer/rm2979533569/?ref_=tt_ov_i', 'https://youtu.be/8ugaeA-nMTc?si=95Mfetqrv87fxv7Q', 'Jon Favreau', 'Robert Downey Jr., Gwyneth Paltrow, Terrence Howard', 'Mark Fergus, Hawk Ostby, Art Marcum', 0, 1, 1)
+INSERT INTO Movies(MovieName, ReleaseYear, Length, Description, Rating, Image, Trailer, Director, Star, Writer, MultiDirectors, MultiStars, MultiWriters) Values('Iron Man', 2008, 126, 'After being held captive in an Afghan cave, billionaire engineer Tony Stark creates a unique weaponized suit of armor to fight evil.', -1, 'https://m.media-amazon.com/images/M/MV5BMTczNTI2ODUwOF5BMl5BanBnXkFtZTcwMTU0NTIzMw@@._V1_FMjpg_UX1000_.jpg', 'https://youtu.be/8ugaeA-nMTc?si=95Mfetqrv87fxv7Q', 'Jon Favreau', 'Robert Downey Jr., Gwyneth Paltrow, Terrence Howard', 'Mark Fergus, Hawk Ostby, Art Marcum', 0, 1, 1)
 --Sci-Fi Epic
 INSERT INTO GenresToMovies(MovieID, GenreID) Values(1,37) 
 --Superhero
@@ -159,7 +159,7 @@ INSERT INTO GenresToMovies(MovieID, GenreID) Values(1,25)
 INSERT INTO GenresToMovies(MovieID, GenreID) Values(1,22)
 --Sci-Fi
 INSERT INTO GenresToMovies(MovieID, GenreID) Values(1,13)
-INSERT INTO Movies(MovieName, ReleaseYear, Length, Description, Rating, Image, Trailer, Director, Star, Writer, MultiDirectors, MultiStars, MultiWriters) Values('The Godfather', 1972, 175, 'The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.', -1, 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.imdb.com%2Ftitle%2Ftt0068646%2F&psig=AOvVaw1-cQqvsxqoSgu6QyoPf78W&ust=1743584939825000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCKj3_83LtowDFQAAAAAdAAAAABAE', 'https://youtu.be/w3Wo6QiD3eU?si=uzCy5stqF3W9jVts', 'Francis Ford Coppola', 'Marlon Brando, Al Pacino, James Caan', 'Mario Puzo, Francis Ford Coppola', 0, 1, 1)
+INSERT INTO Movies(MovieName, ReleaseYear, Length, Description, Rating, Image, Trailer, Director, Star, Writer, MultiDirectors, MultiStars, MultiWriters) Values('The Godfather', 1972, 175, 'The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.', -1, 'https://m.media-amazon.com/images/M/MV5BNGEwYjgwOGQtYjg5ZS00Njc1LTk2ZGEtM2QwZWQ2NjdhZTE5XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg', 'https://youtu.be/w3Wo6QiD3eU?si=uzCy5stqF3W9jVts', 'Francis Ford Coppola', 'Marlon Brando, Al Pacino, James Caan', 'Mario Puzo, Francis Ford Coppola', 0, 1, 1)
 --Epic
 INSERT INTO GenresToMovies(MovieID, GenreID) Values(2,38)
 --Gangster
@@ -170,7 +170,7 @@ INSERT INTO GenresToMovies(MovieID, GenreID) Values(2,39)
 INSERT INTO GenresToMovies(MovieID, GenreID) Values(2,19)
 --Drama
 INSERT INTO GenresToMovies(MovieID, GenreID) Values(2,21)
-INSERT INTO Movies(MovieName, ReleaseYear, Length, Description, Rating, Image, Trailer, Director, Star, Writer, MultiDirectors, MultiStars, MultiWriters) Values('Pulp Fiction', 1994, 154, 'The lives of two mob hitmen, a boxer, a gangster and his wife, and a pair of diner bandits intertwine in four tales of violence and redemption.', -1, 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FPulp_Fiction&psig=AOvVaw2_x9I5_qqgs3yexElHKfxl&ust=1743585714838000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCMiHkcHOtowDFQAAAAAdAAAAABAE', 'https://youtu.be/s7EdQ4FqbhY?si=oFUZl1vG1Kcad1h2', 'Quentin Tarantino', 'John Travolta, Uma Thurman, Samuel L. Jackson', 'Quentin Tarantino, Roger Avary', 0, 1, 1)
+INSERT INTO Movies(MovieName, ReleaseYear, Length, Description, Rating, Image, Trailer, Director, Star, Writer, MultiDirectors, MultiStars, MultiWriters) Values('Pulp Fiction', 1994, 154, 'The lives of two mob hitmen, a boxer, a gangster and his wife, and a pair of diner bandits intertwine in four tales of violence and redemption.', -1, 'https://m.media-amazon.com/images/M/MV5BYTViYTE3ZGQtNDBlMC00ZTAyLTkyODMtZGRiZDg0MjA2YThkXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg', 'https://youtu.be/s7EdQ4FqbhY?si=oFUZl1vG1Kcad1h2', 'Quentin Tarantino', 'John Travolta, Uma Thurman, Samuel L. Jackson', 'Quentin Tarantino, Roger Avary', 0, 1, 1)
 --Dark Comedy
 INSERT INTO GenresToMovies(MovieID, GenreID) Values(3,7)
 --Drug Crime
@@ -181,7 +181,7 @@ INSERT INTO GenresToMovies(MovieID, GenreID) Values(3,15)
 INSERT INTO GenresToMovies(MovieID, GenreID) Values(3,19)
 --Drama
 INSERT INTO GenresToMovies(MovieID, GenreID) Values(3,21)
-INSERT INTO Movies(MovieName, ReleaseYear, Length, Description, Rating, Image, Trailer, Director, Star, Writer, MultiDirectors, MultiStars, MultiWriters) Values('Spider-Man: Into the Spider-Verse', 2018, 117, 'Teen Miles Morales becomes the Spider-Man of his universe and must join with five spider-powered individuals from other dimensions to stop a threat for all realities.', -1, 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.imdb.com%2Ftitle%2Ftt4633694%2F&psig=AOvVaw1igxqwy9TgTnPfbSLkTmaZ&ust=1743586521730000&source=images&cd=vfe&opi=89978449&ved=0CBUQjRxqFwoTCNCkpsDRtowDFQAAAAAdAAAAABAE', 'https://youtu.be/g4Hbz2jLxvQ?si=VXhc76ASqLjw19TD', 'Bob Persichetti, Peter Ramsey, Rodney Rothman', 'Shameik Moore, Jake Johnson, Hailee Steinfeld', 'Phil Lord, Rodney Rothman', 1, 1, 1)
+INSERT INTO Movies(MovieName, ReleaseYear, Length, Description, Rating, Image, Trailer, Director, Star, Writer, MultiDirectors, MultiStars, MultiWriters) Values('Spider-Man: Into the Spider-Verse', 2018, 117, 'Teen Miles Morales becomes the Spider-Man of his universe and must join with five spider-powered individuals from other dimensions to stop a threat for all realities.', -1, 'https://m.media-amazon.com/images/M/MV5BMjMwNDkxMTgzOF5BMl5BanBnXkFtZTgwNTkwNTQ3NjM@._V1_FMjpg_UX1000_.jpg', 'https://youtu.be/g4Hbz2jLxvQ?si=VXhc76ASqLjw19TD', 'Bob Persichetti, Peter Ramsey, Rodney Rothman', 'Shameik Moore, Jake Johnson, Hailee Steinfeld', 'Phil Lord, Rodney Rothman', 1, 1, 1)
 --Computer Animation
 INSERT INTO GenresToMovies(MovieID, GenreID) Values(4,41)
 --Superhero
@@ -192,7 +192,7 @@ INSERT INTO GenresToMovies(MovieID, GenreID) Values(4,42)
 INSERT INTO GenresToMovies(MovieID, GenreID) Values(4,43)
 --Teen Comedy
 INSERT INTO GenresToMovies(MovieID, GenreID) Values(4,44)
-INSERT INTO Movies(MovieName, ReleaseYear, Length, Description, Rating, Image, Trailer, Director, Star, Writer, MultiDirectors, MultiStars, MultiWriters) Values('The Batman', 2022, 176, 'When a sadistic serial killer begins murdering key political figures in Gotham, the Batman is forced to investigate the city''s hidden corruption and question his family''s involvement.', -1, 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fchantillynews.org%2F10144%2Fopinions%2Fthe-batman-created-stunningly-dark-environments%2F&psig=AOvVaw03BKlK0ftpwtFrNp1__6t3&ust=1743587313209000&source=images&cd=vfe&opi=89978449&ved=0CBUQjRxqFwoTCMjcp7rUtowDFQAAAAAdAAAAABAE', 'https://youtu.be/mqqft2x_Aa4?si=0c2fcENlkROEy09v', 'Jon Favreau', 'Robert Pattinson, Zoë Kravitz, Jeffrey Wright', 'Mark Fergus, Hawk Ostby, Art Marcum', 0, 1, 1)
+INSERT INTO Movies(MovieName, ReleaseYear, Length, Description, Rating, Image, Trailer, Director, Star, Writer, MultiDirectors, MultiStars, MultiWriters) Values('The Batman', 2022, 176, 'When a sadistic serial killer begins murdering key political figures in Gotham, the Batman is forced to investigate the city''s hidden corruption and question his family''s involvement.', -1, 'https://m.media-amazon.com/images/M/MV5BMmU5NGJlMzAtMGNmOC00YjJjLTgyMzUtNjAyYmE4Njg5YWMyXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg', 'https://youtu.be/mqqft2x_Aa4?si=0c2fcENlkROEy09v', 'Jon Favreau', 'Robert Pattinson, Zoë Kravitz, Jeffrey Wright', 'Mark Fergus, Hawk Ostby, Art Marcum', 0, 1, 1)
 --Action Epic
 INSERT INTO GenresToMovies(MovieID, GenreID) Values(5,46)
 --Epic
@@ -203,7 +203,7 @@ INSERT INTO GenresToMovies(MovieID, GenreID) Values(5,36)
 INSERT INTO GenresToMovies(MovieID, GenreID) Values(5,1)
 --Action
 INSERT INTO GenresToMovies(MovieID, GenreID) Values(5,25)
-INSERT INTO Movies(MovieName, ReleaseYear, Length, Description, Rating, Image, Trailer, Director, Star, Writer, MultiDirectors, MultiStars, MultiWriters) Values(' Schindler''s List', 1993, 195, 'In German-occupied Poland during World War II, industrialist Oskar Schindler gradually becomes concerned for his Jewish workforce after witnessing their persecution by the Nazis.', -1, 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.imdb.com%2Ftitle%2Ftt0108052%2F&psig=AOvVaw2QBO0x7TNRyn5bDjTVcxUb&ust=1743588100136000&source=images&cd=vfe&opi=89978449&ved=0CBUQjRxqFwoTCKD62bHXtowDFQAAAAAdAAAAABAE', 'https://youtu.be/gG22XNhtnoY?si=QHkIZHY257CwQ8BE', 'Steven Spielberg', 'Liam Neeson, Ralph Fiennes, Ben Kingsley', 'Thomas Keneally, Steven Zaillian', 0, 1, 1)
+INSERT INTO Movies(MovieName, ReleaseYear, Length, Description, Rating, Image, Trailer, Director, Star, Writer, MultiDirectors, MultiStars, MultiWriters) Values(' Schindler''s List', 1993, 195, 'In German-occupied Poland during World War II, industrialist Oskar Schindler gradually becomes concerned for his Jewish workforce after witnessing their persecution by the Nazis.', -1, 'https://m.media-amazon.com/images/M/MV5BNjM1ZDQxYWUtMzQyZS00MTE1LWJmZGYtNGUyNTdlYjM3ZmVmXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg', 'https://youtu.be/gG22XNhtnoY?si=QHkIZHY257CwQ8BE', 'Steven Spielberg', 'Liam Neeson, Ralph Fiennes, Ben Kingsley', 'Thomas Keneally, Steven Zaillian', 0, 1, 1)
 --Docudrama
 INSERT INTO GenresToMovies(MovieID, GenreID) Values(6,47)
 --Epic
