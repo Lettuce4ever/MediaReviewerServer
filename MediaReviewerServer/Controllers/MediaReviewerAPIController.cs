@@ -154,7 +154,7 @@ namespace MediaReviewerServer.Controllers
             try
             {
                 List<DTO.MovieDTO> dtoMovies = new List<DTO.MovieDTO>();
-                List<Movie> modelmovies = context.Movies.ToList();
+                List<Movie> modelmovies = context.Movies.Include(m => m.Genres).Include(m => m.Reviews).ToList();
                 foreach (Movie var in modelmovies)
                 {
                     DTO.MovieDTO movieDTO = new DTO.MovieDTO()

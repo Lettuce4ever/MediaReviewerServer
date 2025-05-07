@@ -148,7 +148,7 @@ INSERT INTO Genres(GenreName) Values('Historical Epic')
 INSERT INTO Genres(GenreName) Values('Period Drama')
 INSERT INTO Genres(GenreName) Values('Prison Drama')
 
-INSERT INTO Movies(MovieName, ReleaseYear, Length, Description, Rating, Image, Trailer, Director, Star, Writer, MultiDirectors, MultiStars, MultiWriters) Values('Iron Man', 2008, 126, 'After being held captive in an Afghan cave, billionaire engineer Tony Stark creates a unique weaponized suit of armor to fight evil.', -1, 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.walmart.com%2Fip%2FIron-Man-DVD-Disney-Action-Adventure%2F29221536&psig=AOvVaw27AuTOtJwFATnUQrS-MzUS&ust=1743583796660000&source=images&cd=vfe&opi=89978449&ved=0CBUQjRxqFwoTCJCKsK3HtowDFQAAAAAdAAAAABAI', 'https://youtu.be/8ugaeA-nMTc?si=95Mfetqrv87fxv7Q', 'Jon Favreau', 'Robert Downey Jr., Gwyneth Paltrow, Terrence Howard', 'Mark Fergus, Hawk Ostby, Art Marcum', 0, 1, 1)
+INSERT INTO Movies(MovieName, ReleaseYear, Length, Description, Rating, Image, Trailer, Director, Star, Writer, MultiDirectors, MultiStars, MultiWriters) Values('Iron Man', 2008, 126, 'After being held captive in an Afghan cave, billionaire engineer Tony Stark creates a unique weaponized suit of armor to fight evil.', -1, 'https://www.imdb.com/title/tt0371746/mediaviewer/rm2979533569/?ref_=tt_ov_i', 'https://youtu.be/8ugaeA-nMTc?si=95Mfetqrv87fxv7Q', 'Jon Favreau', 'Robert Downey Jr., Gwyneth Paltrow, Terrence Howard', 'Mark Fergus, Hawk Ostby, Art Marcum', 0, 1, 1)
 --Sci-Fi Epic
 INSERT INTO GenresToMovies(MovieID, GenreID) Values(1,37) 
 --Superhero
