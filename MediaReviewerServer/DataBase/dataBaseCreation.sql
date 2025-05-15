@@ -214,6 +214,32 @@ INSERT INTO GenresToMovies(MovieID, GenreID) Values(6,48)
 INSERT INTO GenresToMovies(MovieID, GenreID) Values(6,49)
 --Prison Drama
 INSERT INTO GenresToMovies(MovieID, GenreID) Values(6,50)
+
+INSERT INTO Reviews(UserID, MovieID, Rating, Description, ReviewDate) Values(1, 1, 9, 'A gripping experience from start to finish. The pacing was tight, and the emotional beats really landed. Highly recommended.', '2025-01-03')
+INSERT INTO Reviews(UserID, MovieID, Rating, Description, ReviewDate) Values(2, 1, 6, 'It had its moments, but overall felt a bit uneven. Some strong scenes, though, and decent performances.', '2025-01-17')
+INSERT INTO Reviews(UserID, MovieID, Rating, Description, ReviewDate) Values(3, 1, 8, 'Visually impressive and emotionally resonant. It strikes a nice balance between entertainment and depth.', '2025-01-28')
+
+INSERT INTO Reviews(UserID, MovieID, Rating, Description, ReviewDate) Values(1, 2, 3, 'Unfortunately, it just didn’t work for me. The story was disjointed and I couldn’t connect with the characters.', '2025-02-05')
+INSERT INTO Reviews(UserID, MovieID, Rating, Description, ReviewDate) Values(2, 2, 10,'An absolute masterpiece. Every element came together beautifully. Easily one of the best I''ve seen.', '2025-02-16')
+INSERT INTO Reviews(UserID, MovieID, Rating, Description, ReviewDate) Values(3, 2, 7, 'Entertaining and well-crafted, though it played it a bit safe. Still, a solid watch.', '2025-02-27')
+
+INSERT INTO Reviews(UserID, MovieID, Rating, Description, ReviewDate) Values(1, 3, 5, 'Right down the middle. It had potential, but didn’t quite capitalize on it. Some good ideas, but poor execution.', '2025-03-04')
+INSERT INTO Reviews(UserID, MovieID, Rating, Description, ReviewDate) Values(2, 3, 2, 'Very disappointing. Weak script, flat characters, and a lack of focus. Hard to sit through.', '2025-03-15')
+INSERT INTO Reviews(UserID, MovieID, Rating, Description, ReviewDate) Values(3, 3, 8, 'Strong storytelling with memorable moments. It may not be perfect, but it leaves a lasting impression.', '2025-03-29')
+
+INSERT INTO Reviews(UserID, MovieID, Rating, Description, ReviewDate) Values(1, 4, 4, 'Started off with promise but quickly lost momentum. A few bright spots couldn’t save it.', '2025-04-02')
+INSERT INTO Reviews(UserID, MovieID, Rating, Description, ReviewDate) Values(2, 4, 7, 'A well-made film with heart. Some flaws here and there, but still an enjoyable ride.', '2025-04-11')
+INSERT INTO Reviews(UserID, MovieID, Rating, Description, ReviewDate) Values(3, 4, 9, 'Near-perfect in execution. A great example of how powerful cinema can be when everything clicks.', '2025-04-20')
+
+INSERT INTO Reviews(UserID, MovieID, Rating, Description, ReviewDate) Values(1, 5, 1, 'A complete misfire. Nothing about this film worked. It felt like a waste of time.', '2025-04-26')
+INSERT INTO Reviews(UserID, MovieID, Rating, Description, ReviewDate) Values(2, 5, 6, 'Not bad, not great. A few strong performances and decent direction, but lacking impact.', '2025-05-01')
+INSERT INTO Reviews(UserID, MovieID, Rating, Description, ReviewDate) Values(3, 5, 5, 'Somewhat forgettable. There were moments of brilliance, but overall it didn’t leave much of an impression', '2025-05-06')
+
+INSERT INTO Reviews(UserID, MovieID, Rating, Description, ReviewDate) Values(1, 6, 7, 'A solid entry in its genre. Fans will appreciate it, even if it doesn''t break new ground.', '2025-05-09')
+INSERT INTO Reviews(UserID, MovieID, Rating, Description, ReviewDate) Values(2, 6, 3, 'It had some interesting visuals, but the plot and dialogue fell short. Hard to recommend.', '2025-05-15')
+INSERT INTO Reviews(UserID, MovieID, Rating, Description, ReviewDate) Values(3, 6, 8, 'A satisfying watch. Well-paced and nicely acted, even if a bit predictable.', '2025-05-13')
+
+
 Select*from Users
 Select*from Genres
 Select*from Genres ORDER BY GenreID ASC
