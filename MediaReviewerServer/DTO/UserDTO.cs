@@ -12,6 +12,7 @@ namespace MediaReviewerServer.DTO
         public string Lastname { get; set; }
         public string Email { get; set; }
         public bool IsAdmin { get; set; }
+        public string ProfileImagePath { get; set; } = "";
         public UserDTO()
         {
 

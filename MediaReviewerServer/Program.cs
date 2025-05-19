@@ -63,6 +63,7 @@ namespace MediaReviewerServer
             //app.Urls.Add("https://*:7012");
             app.MapControllers(); //Map all controllers classes
 
+            app.UseAuthorization();
             app.Run();
         }
     }

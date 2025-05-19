@@ -41,6 +41,7 @@ namespace MediaReviewerServer.Controllers
                 //Login suceed! now mark login in session memory!
                 HttpContext.Session.SetString("loggedInUser", modelsUser.Email);
                 DTO.UserDTO dtoUser = new DTO.UserDTO(modelsUser);
+                dtoUser.ProfileImagePath = GetProfileImageVirtualPath(dtoUser.UserID);
                 return Ok(dtoUser);
             }
             catch (Exception ex)
@@ -79,7 +80,11 @@ namespace MediaReviewerServer.Controllers
         {
             try
             {
-                HttpContext.Session.Clear(); //Logout any previous login attempt
+                string? userEmail = HttpContext.Session.GetString("loggedInUser");
+                if (string.IsNullOrEmpty(userEmail))
+                {
+                    return Unauthorized("User is not logged in");
+                }
 
                 //Create model genre class
                 Models.Genre modelsGenre = genreDto.GetModels();
@@ -103,7 +108,12 @@ namespace MediaReviewerServer.Controllers
         {
             try
             {
-                
+                string? userEmail = HttpContext.Session.GetString("loggedInUser");
+                if (string.IsNullOrEmpty(userEmail))
+                {
+                    return Unauthorized("User is not logged in");
+                }
+
                 //Create model genre class
                 Models.Movie modelsMovie = movieDto.GetModels();
 
@@ -213,8 +223,11 @@ namespace MediaReviewerServer.Controllers
         {
             try
             {
-                HttpContext.Session.Clear();
-
+                string? userEmail = HttpContext.Session.GetString("loggedInUser");
+                if (string.IsNullOrEmpty(userEmail))
+                {
+                    return Unauthorized("User is not logged in");
+                }
                 //Create model review class
                 Models.Review modelsReview = reviewDto.GetModels();
 
@@ -281,6 +294,9 @@ namespace MediaReviewerServer.Controllers
                         Email = var.Email,
                         IsAdmin = var.IsAdmin,
                     });
+                    //Get the profile image virtual path
+                    string virtualPath = GetProfileImageVirtualPath(var.UserId);
+                    dtoUsers.Last().ProfileImagePath = virtualPath;
                 }
                 return Ok(dtoUsers);
             }
@@ -288,6 +304,128 @@ namespace MediaReviewerServer.Controllers
             {
                 return BadRequest(ex.Message);
             }
+        }
+
+        [HttpGet("getimagespaths")]
+        public IActionResult GetImagesPaths()
+        {
+            try
+            {
+                Dictionary<int, string> ImagesURLs = new Dictionary<int, string>();
+                List<User> modelusers = context.Users.ToList();
+                foreach (User var in modelusers)
+                {
+                    ImagesURLs.Add(var.UserId, GetProfileImageVirtualPath(var.UserId));
+                }
+                return Ok(ImagesURLs);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        //this function gets a file stream and check if it is an image
+        private static bool IsImage(Stream stream)
+        {
+            stream.Seek(0, SeekOrigin.Begin);
+
+            List<string> jpg = new List<string> { "FF", "D8" };
+            List<string> bmp = new List<string> { "42", "4D" };
+            List<string> gif = new List<string> { "47", "49", "46" };
+            List<string> png = new List<string> { "89", "50", "4E", "47", "0D", "0A", "1A", "0A" };
+            List<List<string>> imgTypes = new List<List<string>> { jpg, bmp, gif, png };
+
+            List<string> bytesIterated = new List<string>();
+
+            for (int i = 0; i < 8; i++)
+            {
+                string bit = stream.ReadByte().ToString("X2");
+                bytesIterated.Add(bit);
+
+                bool isImage = imgTypes.Any(img => !img.Except(bytesIterated).Any());
+                if (isImage)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        //this function check which profile image exist and return the virtual path of it.
+        //if it does not exist it returns the default profile image virtual path
+        private string GetProfileImageVirtualPath(int userId)
+        {
+            string virtualPath = $"/profileImages/{userId}";
+            string path = $"{this.webHostEnvironment.WebRootPath}\\profileImages\\{userId}.png";
+            if (System.IO.File.Exists(path))
+            {
+                virtualPath += ".png";
+            }
+            else
+            {
+                path = $"{this.webHostEnvironment.WebRootPath}\\profileImages\\{userId}.jpg";
+                if (System.IO.File.Exists(path))
+                {
+                    virtualPath += ".jpg";
+                }
+                else
+                {
+                    virtualPath = $"/profileImages/default.png";
+                }
+            }
+
+            return virtualPath;
+        }
+
+        //THis function gets a userId and a profile image file and save the image in the server
+        //The function return the full path of the file saved
+        private async Task<string> SaveProfileImageAsync(int userId, IFormFile file)
+        {
+            //Read all files sent
+            long imagesSize = 0;
+
+            if (file.Length > 0)
+            {
+                //Check the file extention!
+                string[] allowedExtentions = { ".png", ".jpg" };
+                string extention = "";
+                if (file.FileName.LastIndexOf(".") > 0)
+                {
+                    extention = file.FileName.Substring(file.FileName.LastIndexOf(".")).ToLower();
+                }
+                if (!allowedExtentions.Where(e => e == extention).Any())
+                {
+                    //Extention is not supported
+                    throw new Exception("File sent with non supported extention");
+                }
+
+                //Build path in the web root (better to a specific folder under the web root
+                string filePath = $"{this.webHostEnvironment.WebRootPath}\\profileImages\\{userId}{extention}";
+
+                using (var stream = System.IO.File.Create(filePath))
+                {
+                    await file.CopyToAsync(stream);
+
+                    if (IsImage(stream))
+                    {
+                        imagesSize += stream.Length;
+                    }
+                    else
+                    {
+                        //Delete the file if it is not supported!
+                        System.IO.File.Delete(filePath);
+                        throw new Exception("File sent is not an image");
+                    }
+
+                }
+
+                return filePath;
+
+            }
+
+            throw new Exception("File in size 0");
         }
 
         //Helper functions
