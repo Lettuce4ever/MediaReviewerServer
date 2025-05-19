@@ -96,6 +96,7 @@ scaffold-DbContext "Server = (localdb)\MSSQLLocalDB;Initial Catalog=MediaReviewe
 INSERT INTO Users(Username, Password, Firstname, Lastname, Email, IsAdmin) Values('TheGal', 'Gal031206', 'Gal', 'Klug', 'galkluger@gmail.com', 1)
 INSERT INTO Users(Username, Password, Firstname, Lastname, Email, IsAdmin) Values('TheShahar', 'Shahar031206', 'Shahar', 'Klug', 'shaharkluger@gmail.com', 0)
 INSERT INTO Users(Username, Password, Firstname, Lastname, Email, IsAdmin) Values('TheRan', 'Ran031206', 'Ran', 'Klug', 'rankluger@gmail.com', 0)
+INSERT INTO Users(Username, Password, Firstname, Lastname, Email, IsAdmin) Values('TheTami', 'Tami031206', 'Tami', 'Klug', 'tamikluger@gmail.com', 0)
 
 INSERT INTO Genres(GenreName) Values('Superhero')
 INSERT INTO Genres(GenreName) Values('Coming-of-Age')
@@ -245,3 +246,4 @@ Select*from Genres
 Select*from Genres ORDER BY GenreID ASC
 Select*from Movies
 Select*from GenresToMovies
+Select*from Reviews

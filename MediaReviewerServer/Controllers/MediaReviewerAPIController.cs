@@ -208,6 +208,88 @@ namespace MediaReviewerServer.Controllers
             }
         }
 
+        [HttpPost("addreview")]
+        public IActionResult AddReview([FromBody] DTO.ReviewDTO reviewDto)
+        {
+            try
+            {
+                HttpContext.Session.Clear();
+
+                //Create model review class
+                Models.Review modelsReview = reviewDto.GetModels();
+
+                context.Reviews.Add(modelsReview);
+                context.SaveChanges();
+
+                //Review was added!
+                DTO.ReviewDTO dtoReview = new DTO.ReviewDTO(modelsReview);
+
+
+                double rating=0;
+                int count = 0;
+                List<DTO.ReviewDTO> newdtoReviews = new List<DTO.ReviewDTO>();
+                List<Review> modelreviews = context.GetReviewsByMovie((int)(reviewDto.MovieId));
+                foreach (Review var in modelreviews)
+                {
+                    newdtoReviews.Add(new DTO.ReviewDTO()
+                    {
+                        ReviewId = var.ReviewId,
+                        UserId = var.UserId,
+                        MovieId = var.MovieId,
+                        Rating = var.Rating,
+                        Description = var.Description,
+                        ReviewDate = var.ReviewDate
+                    });
+                }
+                foreach (DTO.ReviewDTO var in newdtoReviews)
+                {
+                    rating += var.Rating;
+                    count++;
+                }
+                rating = rating / count;
+                context.SetMovieRating((int)(reviewDto.MovieId), rating);
+
+
+
+                return Ok(dtoReview);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
+        }
+
+        //Get api/getusers
+        //This method is used to get all users from the database and return a list of DTO.Users
+        [HttpGet("getusers")]
+        public IActionResult GetUsers()
+        {
+            try
+            {
+                List<DTO.UserDTO> dtoUsers = new List<DTO.UserDTO>();
+                List<User> modelusers = context.Users.ToList();
+                foreach (User var in modelusers)
+                {
+                    dtoUsers.Add(new DTO.UserDTO()
+                    {
+                        UserID = var.UserId,
+                        Username = var.Username,
+                        Password = var.Password,
+                        Firstname = var.Firstname,
+                        Lastname = var.Lastname,
+                        Email = var.Email,
+                        IsAdmin = var.IsAdmin,
+                    });
+                }
+                return Ok(dtoUsers);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
         //Helper functions
         #region Backup / Restore
         [HttpGet("Backup")]
