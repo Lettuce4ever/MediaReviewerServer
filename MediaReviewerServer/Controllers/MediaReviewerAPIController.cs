@@ -273,6 +273,62 @@ namespace MediaReviewerServer.Controllers
 
         }
 
+        [HttpPost("editreview")]
+        public IActionResult EditReview([FromBody] DTO.ReviewDTO reviewDto)
+        {
+            try
+            {
+                string? userEmail = HttpContext.Session.GetString("loggedInUser");
+                if (string.IsNullOrEmpty(userEmail))
+                {
+                    return Unauthorized("User is not logged in");
+                }
+                //Create model review class
+                Models.Review modelsReview = reviewDto.GetModels();
+
+                context.SetReviewRating((int)modelsReview.MovieId, modelsReview.Rating);
+                context.SetReviewDescription((int)modelsReview.MovieId, modelsReview.Description);
+                context.SaveChanges();
+
+                //Review was edited!
+                DTO.ReviewDTO dtoReview = new DTO.ReviewDTO(modelsReview);
+
+
+                double rating = 0;
+                int count = 0;
+                List<DTO.ReviewDTO> newdtoReviews = new List<DTO.ReviewDTO>();
+                List<Review> modelreviews = context.GetReviewsByMovie((int)(reviewDto.MovieId));
+                foreach (Review var in modelreviews)
+                {
+                    newdtoReviews.Add(new DTO.ReviewDTO()
+                    {
+                        ReviewId = var.ReviewId,
+                        UserId = var.UserId,
+                        MovieId = var.MovieId,
+                        Rating = var.Rating,
+                        Description = var.Description,
+                        ReviewDate = var.ReviewDate
+                    });
+                }
+                foreach (DTO.ReviewDTO var in newdtoReviews)
+                {
+                    rating += var.Rating;
+                    count++;
+                }
+                rating = rating / count;
+                context.SetMovieRating((int)(reviewDto.MovieId), rating);
+
+
+
+                return Ok(dtoReview);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
+        }
+
         //Get api/getusers
         //This method is used to get all users from the database and return a list of DTO.Users
         [HttpGet("getusers")]
@@ -299,25 +355,6 @@ namespace MediaReviewerServer.Controllers
                     dtoUsers.Last().ProfileImagePath = virtualPath;
                 }
                 return Ok(dtoUsers);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
-
-        [HttpGet("getimagespaths")]
-        public IActionResult GetImagesPaths()
-        {
-            try
-            {
-                Dictionary<int, string> ImagesURLs = new Dictionary<int, string>();
-                List<User> modelusers = context.Users.ToList();
-                foreach (User var in modelusers)
-                {
-                    ImagesURLs.Add(var.UserId, GetProfileImageVirtualPath(var.UserId));
-                }
-                return Ok(ImagesURLs);
             }
             catch (Exception ex)
             {
