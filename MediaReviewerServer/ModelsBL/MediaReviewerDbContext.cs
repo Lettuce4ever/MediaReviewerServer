@@ -1,6 +1,7 @@
 ﻿using MediaReviewerServer.DTO;
 using MediaReviewerServer.Models;
 using Microsoft.EntityFrameworkCore;
+using System.IO;
 
 namespace MediaReviewerServer.Models
 {
@@ -25,22 +26,164 @@ namespace MediaReviewerServer.Models
             }
         }
 
-        public void SetReviewRating(int movieID, double rating)
+        public void SetReviewRating(int movieID, int userID, double rating)
         {
-            var review = this.Reviews.FirstOrDefault(r => r.MovieId == movieID);
+            var review = this.Reviews.FirstOrDefault(r => r.MovieId == movieID&&r.UserId==userID);
             if (review != null)
             {
                 review.Rating = rating;
                 this.SaveChanges();
             }
         }
-        public void SetReviewDescription(int movieID, string description)
+        public void SetReviewDescription(int movieID, int userID, string description)
         {
-            var review = this.Reviews.FirstOrDefault(r => r.MovieId == movieID);
+            var review = this.Reviews.FirstOrDefault(r => r.MovieId == movieID && r.UserId == userID);
             if (review != null)
             {
                 review.Description = description;
                 this.SaveChanges();
+            }
+        }
+
+        public void SetReviewDate(int movieID, int userID, DateOnly date)
+        {
+            var review = this.Reviews.FirstOrDefault(r => r.MovieId == movieID && r.UserId == userID);
+            if (review != null)
+            {
+                review.ReviewDate = date;
+                this.SaveChanges();
+            }
+        }
+
+        public void SetMovieName(int movieID, string name)
+        {
+            var movie = this.Movies.Find(movieID);
+            if (movie != null)
+            {
+                movie.MovieName = name;
+                this.SaveChanges();
+            }
+        }
+
+        public void SetMovieReleaseYear(int movieID, int releaseYear)
+        {
+            var movie = this.Movies.Find(movieID);
+            if (movie != null)
+            {
+                movie.ReleaseYear = releaseYear;
+                this.SaveChanges();
+            }
+        }
+
+        public void SetMovieLenth(int movieID, int length)
+        {
+            var movie = this.Movies.Find(movieID);
+            if (movie != null)
+            {
+                movie.Length = length;
+                this.SaveChanges();
+            }
+        }
+        public void SetMovieImage(int movieID, string image)
+        {
+            var movie = this.Movies.Find(movieID);
+            if (movie != null)
+            {
+                movie.Image = image;
+                this.SaveChanges();
+            }
+        }
+        public void SetMovieTrailer(int movieID, string trailer)
+        {
+            var movie = this.Movies.Find(movieID);
+            if (movie != null)
+            {
+                movie.Trailer = trailer;
+                this.SaveChanges();
+            }
+        }
+        public void SetMovieDescription(int movieID, string description)
+        {
+            var movie = this.Movies.Find(movieID);
+            if (movie != null)
+            {
+                movie.Description = description;
+                this.SaveChanges();
+            }
+        }
+        public void SetMovieDirector(int movieID, string director)
+        {
+            var movie = this.Movies.Find(movieID);
+            if (movie != null)
+            {
+                movie.Director = director;
+                this.SaveChanges();
+            }
+        }
+        public void SetMovieStar(int movieID, string star)
+        {
+            var movie = this.Movies.Find(movieID);
+            if (movie != null)
+            {
+                movie.Star = star;
+                this.SaveChanges();
+            }
+        }
+
+        public void SetMovieWriter(int movieID, string writer)
+        {
+            var movie = this.Movies.Find(movieID);
+            if (movie != null)
+            {
+                movie.Writer = writer;
+                this.SaveChanges();
+            }
+        }
+
+        public void SetMovieMultiDirectors(int movieID, bool multiDirectors)
+        {
+            var movie = this.Movies.Find(movieID);
+            if (movie != null)
+            {
+                movie.MultiDirectors = multiDirectors;
+                this.SaveChanges();
+            }
+        }
+
+        public void SetMovieMultiStars(int movieID, bool multiStars)
+        {
+            var movie = this.Movies.Find(movieID);
+            if (movie != null)
+            {
+                movie.MultiStars = multiStars;
+                this.SaveChanges();
+            }
+        }
+
+        public void SetMovieMultiWriters(int movieID, bool multiWriters)
+        {
+            var movie = this.Movies.Find(movieID);
+            if (movie != null)
+            {
+                movie.MultiWriters = multiWriters;
+                this.SaveChanges();
+            }
+        }
+
+        public void SetMovieGenres(int movieID, List<GenreDTO> Genres)
+        {
+            var movie = this.Movies.Find(movieID);
+            if (movie != null)
+            {
+                movie.Genres.Clear();
+                foreach (var genre in Genres)
+                {
+                    movie.Genres.Add(new Genre
+                    {
+                        GenreId = genre.GenreId,
+                        GenreName = genre.GenreName
+                    });
+                }
             }
         }
     }

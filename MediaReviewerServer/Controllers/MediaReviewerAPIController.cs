@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.Data.SqlClient;
 using System.Text.Json;
+using MediaReviewerServer.DTO;
 namespace MediaReviewerServer.Controllers
 {
     [Route("api")]
@@ -114,10 +115,10 @@ namespace MediaReviewerServer.Controllers
                     return Unauthorized("User is not logged in");
                 }
 
-                //Create model genre class
+                //Create model movie class
                 Models.Movie modelsMovie = movieDto.GetModels();
 
-                context.Movies.Update(modelsMovie);
+                context.Movies.Add(modelsMovie);
                 context.SaveChanges();
 
                 //User was added!
@@ -286,8 +287,9 @@ namespace MediaReviewerServer.Controllers
                 //Create model review class
                 Models.Review modelsReview = reviewDto.GetModels();
 
-                context.SetReviewRating((int)modelsReview.MovieId, modelsReview.Rating);
-                context.SetReviewDescription((int)modelsReview.MovieId, modelsReview.Description);
+                context.SetReviewRating((int)reviewDto.MovieId, (int)reviewDto.UserId, modelsReview.Rating);
+                context.SetReviewDescription((int)reviewDto.MovieId, (int)reviewDto.UserId, modelsReview.Description);
+                context.SetReviewDate((int)reviewDto.MovieId, (int)reviewDto.UserId, modelsReview.ReviewDate);
                 context.SaveChanges();
 
                 //Review was edited!
@@ -328,6 +330,59 @@ namespace MediaReviewerServer.Controllers
             }
 
         }
+
+                [HttpPost("editmovie")]
+        public IActionResult EditMovie([FromBody] DTO.MovieDTO movieDto)
+        {
+            try
+            {
+                string? userEmail = HttpContext.Session.GetString("loggedInUser");
+                if (string.IsNullOrEmpty(userEmail))
+                {
+                    return Unauthorized("User is not logged in");
+                }
+
+                //Create model movie class
+                Models.Movie modelsMovie = movieDto.GetModels();
+
+                List<DTO.GenreDTO> genres = new List<DTO.GenreDTO>();
+                foreach (Genre genre in modelsMovie.Genres)
+                {
+                    DTO.GenreDTO DTOGenre = new DTO.GenreDTO()
+                    {
+                        GenreId = genre.GenreId,
+                        GenreName = genre.GenreName
+                    };
+                    genres.Add(DTOGenre);
+                }
+
+                context.SetMovieName(movieDto.MovieId, modelsMovie.MovieName);
+                context.SetMovieReleaseYear(movieDto.MovieId, modelsMovie.ReleaseYear);
+                context.SetMovieLenth(movieDto.MovieId, modelsMovie.Length);
+                context.SetMovieImage(movieDto.MovieId, modelsMovie.Image);
+                context.SetMovieTrailer(movieDto.MovieId, modelsMovie.Trailer);
+                context.SetMovieDescription(movieDto.MovieId, modelsMovie.Description);
+                context.SetMovieRating(movieDto.MovieId, modelsMovie.Rating);
+                context.SetMovieDirector(movieDto.MovieId, modelsMovie.Director);
+                context.SetMovieStar(movieDto.MovieId, modelsMovie.Star);
+                context.SetMovieWriter(movieDto.MovieId, modelsMovie.Writer);
+                context.SetMovieMultiDirectors(movieDto.MovieId, modelsMovie.MultiDirectors);
+                context.SetMovieMultiStars(movieDto.MovieId, modelsMovie.MultiStars);
+                context.SetMovieMultiWriters(movieDto.MovieId, modelsMovie.MultiWriters);
+                context.SetMovieGenres(movieDto.MovieId, genres);
+                context.SaveChanges();
+
+                //User was added!
+                DTO.MovieDTO dtoMovie = new DTO.MovieDTO(modelsMovie);
+                return Ok(dtoMovie);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
+        }
+
 
         //Get api/getusers
         //This method is used to get all users from the database and return a list of DTO.Users
