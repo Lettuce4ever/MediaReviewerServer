@@ -172,17 +172,21 @@ namespace MediaReviewerServer.Models
 
         public void SetMovieGenres(int movieID, List<GenreDTO> Genres)
         {
-            var movie = this.Movies.Find(movieID);
+            var movie = this.Movies
+                .Include(m => m.Genres)                              
+                .FirstOrDefault(m => m.MovieId == movieID);
+
             if (movie != null)
             {
                 movie.Genres.Clear();
-                foreach (var genre in Genres)
+
+                foreach (var genreDto in Genres)
                 {
-                    movie.Genres.Add(new Genre
+                    var existingGenre = this.Genres.Find(genreDto.GenreId); 
+                    if (existingGenre != null)
                     {
-                        GenreId = genre.GenreId,
-                        GenreName = genre.GenreName
-                    });
+                        movie.Genres.Add(existingGenre);         
+                    }
                 }
             }
         }

@@ -121,7 +121,7 @@ namespace MediaReviewerServer.Controllers
                 context.Movies.Add(modelsMovie);
                 context.SaveChanges();
 
-                //User was added!
+                
                 DTO.MovieDTO dtoMovie = new DTO.MovieDTO(modelsMovie);
                 return Ok(dtoMovie);
             }
@@ -356,6 +356,7 @@ namespace MediaReviewerServer.Controllers
                     genres.Add(DTOGenre);
                 }
 
+
                 context.SetMovieName(movieDto.MovieId, modelsMovie.MovieName);
                 context.SetMovieReleaseYear(movieDto.MovieId, modelsMovie.ReleaseYear);
                 context.SetMovieLenth(movieDto.MovieId, modelsMovie.Length);
@@ -372,8 +373,59 @@ namespace MediaReviewerServer.Controllers
                 context.SetMovieGenres(movieDto.MovieId, genres);
                 context.SaveChanges();
 
-                //User was added!
-                DTO.MovieDTO dtoMovie = new DTO.MovieDTO(modelsMovie);
+
+                Models.Movie? updatedMovie = context.Movies.Include(m => m.Genres).Include(m => m.Reviews).FirstOrDefault(m => m.MovieId == movieDto.MovieId);
+
+                if (updatedMovie == null)
+                {
+                    return NotFound("Movie not found after update");
+                }
+
+                // Create DTO from the UPDATED movie with all relationships loaded
+                DTO.MovieDTO dtoMovie = new DTO.MovieDTO()
+                {
+                    MovieId = updatedMovie.MovieId,
+                    MovieName = updatedMovie.MovieName,
+                    ReleaseYear = updatedMovie.ReleaseYear,
+                    Length = updatedMovie.Length,
+                    Description = updatedMovie.Description,
+                    Rating = updatedMovie.Rating,
+                    Image = updatedMovie.Image,
+                    Trailer = updatedMovie.Trailer,
+                    Director = updatedMovie.Director,
+                    Star = updatedMovie.Star,
+                    Writer = updatedMovie.Writer,
+                    MultiDirectors = updatedMovie.MultiDirectors,
+                    MultiStars = updatedMovie.MultiStars,
+                    MultiWriters = updatedMovie.MultiWriters,
+                    Genres = new List<DTO.GenreDTO>(),
+                    Reviews = new List<DTO.ReviewDTO>()
+                };
+
+                // Add the genres from the updated movie
+                foreach (Genre genre in updatedMovie.Genres)
+                {
+                    dtoMovie.Genres.Add(new DTO.GenreDTO()
+                    {
+                        GenreId = genre.GenreId,
+                        GenreName = genre.GenreName
+                    });
+                }
+
+                // Add the reviews from the updated movie
+                foreach (Review review in updatedMovie.Reviews)
+                {
+                    dtoMovie.Reviews.Add(new DTO.ReviewDTO()
+                    {
+                        ReviewId = review.ReviewId,
+                        UserId = review.UserId,
+                        MovieId = review.MovieId,
+                        Rating = review.Rating,
+                        Description = review.Description,
+                        ReviewDate = review.ReviewDate
+                    });
+                }
+
                 return Ok(dtoMovie);
             }
             catch (Exception ex)
@@ -382,6 +434,9 @@ namespace MediaReviewerServer.Controllers
             }
 
         }
+
+
+
 
 
         //Get api/getusers
