@@ -31,9 +31,6 @@ public partial class User
     public bool IsAdmin { get; set; }
 
     [InverseProperty("User")]
-    public virtual ICollection<Request> Requests { get; set; } = new List<Request>();
-
-    [InverseProperty("User")]
     public virtual ICollection<Review> Reviews { get; set; } = new List<Review>();
 }
 //הערה

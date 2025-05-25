@@ -19,7 +19,6 @@ public partial class MediaReviewerDbContext : DbContext
 
     public virtual DbSet<Movie> Movies { get; set; }
 
-    public virtual DbSet<Request> Requests { get; set; }
 
     public virtual DbSet<Review> Reviews { get; set; }
 
@@ -58,13 +57,6 @@ public partial class MediaReviewerDbContext : DbContext
                         j.IndexerProperty<int>("MovieId").HasColumnName("MovieID");
                         j.IndexerProperty<int>("GenreId").HasColumnName("GenreID");
                     });
-        });
-
-        modelBuilder.Entity<Request>(entity =>
-        {
-            entity.HasKey(e => e.RequestId).HasName("PK__Requests__33A8519AD7A66B2E");
-
-            entity.HasOne(d => d.User).WithMany(p => p.Requests).HasConstraintName("FK__Requests__UserID__300424B4");
         });
 
         modelBuilder.Entity<Review>(entity =>

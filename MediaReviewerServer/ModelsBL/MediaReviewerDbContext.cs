@@ -11,6 +11,20 @@ namespace MediaReviewerServer.Models
         {
             return this.Users.Where(u => u.Email == email).FirstOrDefault();
         }
+
+        public User? GetUser(int id)
+        {
+            return this.Users.Where(u => u.UserId == id).FirstOrDefault();
+        }
+        public void SetUserIsAdmin(int userId, bool isAdmin)
+        {
+            var user = this.Users.Find(userId);
+            if (user != null)
+            {
+                user.IsAdmin = isAdmin;
+                this.SaveChanges();
+            }
+        }
         public List<Review>? GetReviewsByMovie(int movieId)
         {
             return this.Reviews.Where(r => r.MovieId == movieId).ToList();
@@ -189,6 +203,16 @@ namespace MediaReviewerServer.Models
                     }
                 }
             }
+        }
+
+        public void RemoveUserReviews(int userId)
+        {
+            var reviews = this.Reviews.Where(r => r.UserId == userId).ToList();
+            foreach (var review in reviews)
+            {
+                this.Reviews.Remove(review);
+            }
+            this.SaveChanges();
         }
     }
 }

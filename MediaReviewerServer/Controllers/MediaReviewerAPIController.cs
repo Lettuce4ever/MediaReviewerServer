@@ -6,6 +6,7 @@ using System.Diagnostics.CodeAnalysis;
 using Microsoft.Data.SqlClient;
 using System.Text.Json;
 using MediaReviewerServer.DTO;
+using Microsoft.AspNetCore.Routing.Constraints;
 namespace MediaReviewerServer.Controllers
 {
     [Route("api")]
@@ -490,6 +491,78 @@ namespace MediaReviewerServer.Controllers
                 context.ChangeTracker.Clear();
 
                 Models.User User = userDto.GetModels();
+
+                context.Entry(User).State = EntityState.Modified;
+
+                context.SaveChanges();
+
+                //Task was updated!
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
+        }
+
+        [HttpPost("promoteuser")]
+        public IActionResult PromoteUser([FromBody] int id)
+        {
+            try
+            {
+                //Check if who is logged in
+                string? userEmail = HttpContext.Session.GetString("loggedInUser");
+                if (string.IsNullOrEmpty(userEmail))
+                {
+                    return Unauthorized("User is not logged in");
+                }
+
+                //Get model user class from DB with matching id. 
+                Models.User? user = context.GetUser(id);
+                //Clear the tracking of all objects to avoid double tracking
+                context.ChangeTracker.Clear();
+
+                context.SetUserIsAdmin(id, true);
+
+                context.Entry(User).State = EntityState.Modified;
+
+                context.SaveChanges();
+
+                //Task was updated!
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
+        }
+
+        [HttpPost("deleteuser")]
+        public IActionResult DeleteUser([FromBody] int id)
+        {
+            try
+            {
+                //Check if who is logged in
+                string? userEmail = HttpContext.Session.GetString("loggedInUser");
+                if (string.IsNullOrEmpty(userEmail))
+                {
+                    return Unauthorized("User is not logged in");
+                }
+
+                //Get model user class from DB with matching id. 
+                Models.User? user = context.GetUser(id);
+                //Clear the tracking of all objects to avoid double tracking
+                context.ChangeTracker.Clear();
+
+                if (user == null)
+                {
+                    return NotFound("User not found");
+                }
+                context.RemoveUserReviews(id);
+                context.Users.Remove(user);
+
 
                 context.Entry(User).State = EntityState.Modified;
 

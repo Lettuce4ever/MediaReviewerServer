@@ -56,14 +56,6 @@ Description nvarchar(1024) Not Null,
 ReviewDate Date Not Null
 )
 
-Create Table Requests
-(
-RequestID int Primary Key Identity,
-UserID int Foreign Key References Users(UserID),
-Title nvarchar(256) Not Null,
-Description nvarchar(1024) Not Null,
-RequestDate Date Not Null
-)
 
 Create Table GenresToMovies
 (
