@@ -617,7 +617,10 @@ namespace MediaReviewerServer.Controllers
                     return BadRequest("File sent with non supported extention");
                 }
 
+
+
                 //Build path in the web root (better to a specific folder under the web root
+                bool success = false;
                 string filePath = $"{this.webHostEnvironment.WebRootPath}\\profileImages\\{user.UserId}{extention}";
 
                 using (var stream = System.IO.File.Create(filePath))
@@ -626,7 +629,7 @@ namespace MediaReviewerServer.Controllers
 
                     if (IsImage(stream))
                     {
-                        imagesSize += stream.Length;
+                        success = true;
                     }
                     else
                     {
@@ -635,6 +638,24 @@ namespace MediaReviewerServer.Controllers
                     }
 
                 }
+
+                //Delete the old profile image if exist
+                if (success)
+                {
+                    foreach (string ext in allowedExtentions)
+                    {
+                        if (ext != extention)
+                        {
+                            string oldFilePath = $"{this.webHostEnvironment.WebRootPath}\\profileImages\\{user.UserId}{ext}";
+                            if (System.IO.File.Exists(oldFilePath))
+                            {
+                                System.IO.File.Delete(oldFilePath);
+                            }
+                        }
+                        
+                    }
+                }
+                
 
             }
 
