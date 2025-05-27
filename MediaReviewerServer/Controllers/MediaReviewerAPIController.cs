@@ -520,14 +520,17 @@ namespace MediaReviewerServer.Controllers
 
                 //Get model user class from DB with matching id. 
                 Models.User? user = context.GetUser(id);
+                if (user == null)
+                {
+                    return NotFound("User not found");
+                }
                 //Clear the tracking of all objects to avoid double tracking
                 context.ChangeTracker.Clear();
 
-                context.SetUserIsAdmin(id, true);
-
-                context.Entry(User).State = EntityState.Modified;
-
+                user.IsAdmin = true;
+                context.Users.Update(user);
                 context.SaveChanges();
+
 
                 //Task was updated!
                 return Ok();
@@ -553,19 +556,16 @@ namespace MediaReviewerServer.Controllers
 
                 //Get model user class from DB with matching id. 
                 Models.User? user = context.GetUser(id);
-                //Clear the tracking of all objects to avoid double tracking
-                context.ChangeTracker.Clear();
-
                 if (user == null)
                 {
                     return NotFound("User not found");
                 }
+                //Clear the tracking of all objects to avoid double tracking
+                context.ChangeTracker.Clear();
+
                 context.RemoveUserReviews(id);
+
                 context.Users.Remove(user);
-
-
-                context.Entry(User).State = EntityState.Modified;
-
                 context.SaveChanges();
 
                 //Task was updated!
@@ -617,7 +617,10 @@ namespace MediaReviewerServer.Controllers
                     return BadRequest("File sent with non supported extention");
                 }
 
+
+
                 //Build path in the web root (better to a specific folder under the web root
+                bool success = false;
                 string filePath = $"{this.webHostEnvironment.WebRootPath}\\profileImages\\{user.UserId}{extention}";
 
                 using (var stream = System.IO.File.Create(filePath))
@@ -626,7 +629,7 @@ namespace MediaReviewerServer.Controllers
 
                     if (IsImage(stream))
                     {
-                        imagesSize += stream.Length;
+                        success = true;
                     }
                     else
                     {
@@ -635,6 +638,24 @@ namespace MediaReviewerServer.Controllers
                     }
 
                 }
+
+                //Delete the old profile image if exist
+                if (success)
+                {
+                    foreach (string ext in allowedExtentions)
+                    {
+                        if (ext != extention)
+                        {
+                            string oldFilePath = $"{this.webHostEnvironment.WebRootPath}\\profileImages\\{user.UserId}{ext}";
+                            if (System.IO.File.Exists(oldFilePath))
+                            {
+                                System.IO.File.Delete(oldFilePath);
+                            }
+                        }
+                        
+                    }
+                }
+                
 
             }
 
@@ -746,111 +767,6 @@ namespace MediaReviewerServer.Controllers
             throw new Exception("File in size 0");
         }
 
-        //Helper functions
-        #region Backup / Restore
-        [HttpGet("Backup")]
-        public async Task<IActionResult> Backup()
-        {
-            string path = $"{this.webHostEnvironment.WebRootPath}\\..\\DataBase\\backup.bak";
-
-            bool success = await BackupDatabaseAsync(path);
-            if (success)
-            {
-                return Ok("Backup was successful");
-            }
-            else
-            {
-                return BadRequest("Backup failed");
-            }
-        }
-
-        [HttpGet("Restore")]
-        public async Task<IActionResult> Restore()
-        {
-            string path = $"{this.webHostEnvironment.WebRootPath}\\..\\DataBase\\backup.bak";
-
-            bool success = await RestoreDatabaseAsync(path);
-            if (success)
-            {
-                return Ok("Restore was successful");
-            }
-            else
-            {
-                return BadRequest("Restore failed");
-            }
-        }
-        //this function backup the database to a specified path
-        private async Task<bool> BackupDatabaseAsync(string path)
-        {
-            try
-            {
-                if (System.IO.File.Exists(path))
-                    System.IO.File.Delete(path);
-
-                //Get the connection string
-                string? connectionString = context.Database.GetConnectionString();
-                //Get the database name
-                string databaseName = context.Database.GetDbConnection().Database;
-                //Build the backup command
-                string command = $"BACKUP DATABASE {databaseName} TO DISK = '{path}'";
-                //Create a connection to the database
-                using (SqlConnection connection = new SqlConnection(connectionString))
-                {
-                    //Open the connection
-                    await connection.OpenAsync();
-                    //Create a command
-                    using (SqlCommand sqlCommand = new SqlCommand(command, connection))
-                    {
-                        //Execute the command
-                        await sqlCommand.ExecuteNonQueryAsync();
-                    }
-                }
-                return true;
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
-
-        }
-
-        //THis function restore the database from a backup in a certain path
-        private async Task<bool> RestoreDatabaseAsync(string path)
-        {
-            try
-            {
-                //Get the connection string
-                string? connectionString = context.Database.GetConnectionString();
-                //Get the database name
-                string databaseName = context.Database.GetDbConnection().Database;
-                //Build the restore command
-                string command = $@"
-                USE master;
-                ALTER DATABASE {databaseName} SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
-                RESTORE DATABASE {databaseName} FROM DISK = '{path}' WITH REPLACE;
-                ALTER DATABASE {databaseName} SET MULTI_USER;";
-
-                //Create a connection to the database
-                using (SqlConnection connection = new SqlConnection(connectionString))
-                {
-                    //Open the connection
-                    await connection.OpenAsync();
-                    //Create a command
-                    using (SqlCommand sqlCommand = new SqlCommand(command, connection))
-                    {
-                        //Execute the command
-                        await sqlCommand.ExecuteNonQueryAsync();
-                    }
-                }
-                return true;
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
-
-        }
-        #endregion
 
 
 
