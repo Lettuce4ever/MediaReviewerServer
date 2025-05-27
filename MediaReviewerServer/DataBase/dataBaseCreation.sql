@@ -86,9 +86,13 @@ scaffold-DbContext "Server = (localdb)\MSSQLLocalDB;Initial Catalog=MediaReviewe
 
 
 INSERT INTO Users(Username, Password, Firstname, Lastname, Email, IsAdmin) Values('TheGal', 'Gal031206', 'Gal', 'Klug', 'galkluger@gmail.com', 1)
-INSERT INTO Users(Username, Password, Firstname, Lastname, Email, IsAdmin) Values('TheShahar', 'Shahar031206', 'Shahar', 'Klug', 'shaharkluger@gmail.com', 0)
-INSERT INTO Users(Username, Password, Firstname, Lastname, Email, IsAdmin) Values('TheRan', 'Ran031206', 'Ran', 'Klug', 'rankluger@gmail.com', 0)
-INSERT INTO Users(Username, Password, Firstname, Lastname, Email, IsAdmin) Values('TheTami', 'Tami031206', 'Tami', 'Klug', 'tamikluger@gmail.com', 0)
+INSERT INTO Users(Username, Password, Firstname, Lastname, Email, IsAdmin) Values('TheShahar', 'Shahar031206', 'Shalgi', 'Klug', 'shaharkluger@gmail.com', 0)
+INSERT INTO Users(Username, Password, Firstname, Lastname, Email, IsAdmin) Values('TheRan', 'Ran031206', 'Ran', 'Nurieli', 'rankluger@gmail.com', 0)
+INSERT INTO Users(Username, Password, Firstname, Lastname, Email, IsAdmin) Values('TheTami', 'Tami031206', 'Tami', 'Friman', 'tamikluger@gmail.com', 0)
+INSERT INTO Users(Username, Password, Firstname, Lastname, Email, IsAdmin) Values('TheSagi', 'Sagi031206', 'Sagi', 'NPCMan', 'sagikluger@gmail.com', 0)
+INSERT INTO Users(Username, Password, Firstname, Lastname, Email, IsAdmin) Values('MelonKiller', 'Mamb123', 'Mike', 'BigW', 'melonmelon@gmail.com', 1)
+INSERT INTO Users(Username, Password, Firstname, Lastname, Email, IsAdmin) Values('MovieCritic4', 'password12345', 'Bob', 'Bobibinson', 'bob@gmail.com', 0)
+INSERT INTO Users(Username, Password, Firstname, Lastname, Email, IsAdmin) Values('greatPerson', 'Awsome123', 'Fraud', 'Money', 'dollarcash@gmail.com', 0)
 
 INSERT INTO Genres(GenreName) Values('Superhero') --1
 INSERT INTO Genres(GenreName) Values('Coming-of-Age') --2
