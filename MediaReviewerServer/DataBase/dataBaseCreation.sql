@@ -90,58 +90,61 @@ INSERT INTO Users(Username, Password, Firstname, Lastname, Email, IsAdmin) Value
 INSERT INTO Users(Username, Password, Firstname, Lastname, Email, IsAdmin) Values('TheRan', 'Ran031206', 'Ran', 'Klug', 'rankluger@gmail.com', 0)
 INSERT INTO Users(Username, Password, Firstname, Lastname, Email, IsAdmin) Values('TheTami', 'Tami031206', 'Tami', 'Klug', 'tamikluger@gmail.com', 0)
 
-INSERT INTO Genres(GenreName) Values('Superhero')
-INSERT INTO Genres(GenreName) Values('Coming-of-Age')
-INSERT INTO Genres(GenreName) Values('Slasher Horror')
-INSERT INTO Genres(GenreName) Values('Horror')
-INSERT INTO Genres(GenreName) Values('Raunchy Comedy')
-INSERT INTO Genres(GenreName) Values('Comedy')
-INSERT INTO Genres(GenreName) Values('Dark Comedy')
-INSERT INTO Genres(GenreName) Values('Thriller')
-INSERT INTO Genres(GenreName) Values('Steamy Romance')
-INSERT INTO Genres(GenreName) Values('Romance')
-INSERT INTO Genres(GenreName) Values('Anime')
-INSERT INTO Genres(GenreName) Values('Dystopian Sci-Fi')
-INSERT INTO Genres(GenreName) Values('Sci-Fi')
-INSERT INTO Genres(GenreName) Values('Sitcom')
-INSERT INTO Genres(GenreName) Values('Gangster')
-INSERT INTO Genres(GenreName) Values('Fantasy Epic')
-INSERT INTO Genres(GenreName) Values('Fantasy')
-INSERT INTO Genres(GenreName) Values('Psychological Thriller')
-INSERT INTO Genres(GenreName) Values('Crime')
-INSERT INTO Genres(GenreName) Values('Biography')
-INSERT INTO Genres(GenreName) Values('Drama')
-INSERT INTO Genres(GenreName) Values('Adventure')
-INSERT INTO Genres(GenreName) Values('War')
-INSERT INTO Genres(GenreName) Values('One-Person Army Action')
-INSERT INTO Genres(GenreName) Values('Action')
-INSERT INTO Genres(GenreName) Values('Erotic Thriller')
-INSERT INTO Genres(GenreName) Values('Psychological Drama')
-INSERT INTO Genres(GenreName) Values('Mystery')
-INSERT INTO Genres(GenreName) Values('Suspense Mystery')
-INSERT INTO Genres(GenreName) Values('Supernatural Horror')
-INSERT INTO Genres(GenreName) Values('Psychological Horror')
-INSERT INTO Genres(GenreName) Values('Documentary')
-INSERT INTO Genres(GenreName) Values('Animation')
-INSERT INTO Genres(GenreName) Values('Dark Fantasy')
-INSERT INTO Genres(GenreName) Values('Romantic Comedy')
-INSERT INTO Genres(GenreName) Values('Serial Killer')
-INSERT INTO Genres(GenreName) Values('Sci-Fi Epic')
-INSERT INTO Genres(GenreName) Values('Epic')
-INSERT INTO Genres(GenreName) Values('Tragedy')
-INSERT INTO Genres(GenreName) Values('Drug Crime')
-INSERT INTO Genres(GenreName) Values('Computer Animation')
-INSERT INTO Genres(GenreName) Values('Supernatural Fantasy')
-INSERT INTO Genres(GenreName) Values('Teen Adventure')
-INSERT INTO Genres(GenreName) Values('Teen Comedy')
-INSERT INTO Genres(GenreName) Values('Teen Epic')
-INSERT INTO Genres(GenreName) Values('Action Epic')
-INSERT INTO Genres(GenreName) Values('Docudrama')
-INSERT INTO Genres(GenreName) Values('Historical Epic')
-INSERT INTO Genres(GenreName) Values('Period Drama')
-INSERT INTO Genres(GenreName) Values('Prison Drama')
+INSERT INTO Genres(GenreName) Values('Superhero') --1
+INSERT INTO Genres(GenreName) Values('Coming-of-Age') --2
+INSERT INTO Genres(GenreName) Values('Slasher Horror') --3
+INSERT INTO Genres(GenreName) Values('Horror') --4
+INSERT INTO Genres(GenreName) Values('Raunchy Comedy') --5
+INSERT INTO Genres(GenreName) Values('Comedy') --6
+INSERT INTO Genres(GenreName) Values('Dark Comedy') --7
+INSERT INTO Genres(GenreName) Values('Thriller') --8
+INSERT INTO Genres(GenreName) Values('Steamy Romance') --9
+INSERT INTO Genres(GenreName) Values('Romance') --10
+INSERT INTO Genres(GenreName) Values('Anime') --11
+INSERT INTO Genres(GenreName) Values('Dystopian Sci-Fi') --12
+INSERT INTO Genres(GenreName) Values('Sci-Fi') -- 13
+INSERT INTO Genres(GenreName) Values('Sitcom') -- 14
+INSERT INTO Genres(GenreName) Values('Gangster') --15
+INSERT INTO Genres(GenreName) Values('Fantasy Epic') --16
+INSERT INTO Genres(GenreName) Values('Fantasy') --17
+INSERT INTO Genres(GenreName) Values('Psychological Thriller') --18
+INSERT INTO Genres(GenreName) Values('Crime') --19
+INSERT INTO Genres(GenreName) Values('Biography') --20
+INSERT INTO Genres(GenreName) Values('Drama') --21
+INSERT INTO Genres(GenreName) Values('Adventure') --22
+INSERT INTO Genres(GenreName) Values('War') --23
+INSERT INTO Genres(GenreName) Values('One-Person Army Action') --24
+INSERT INTO Genres(GenreName) Values('Action') --25
+INSERT INTO Genres(GenreName) Values('Erotic Thriller') --26
+INSERT INTO Genres(GenreName) Values('Psychological Drama') --27
+INSERT INTO Genres(GenreName) Values('Mystery') --28
+INSERT INTO Genres(GenreName) Values('Suspense Mystery') --29
+INSERT INTO Genres(GenreName) Values('Supernatural Horror') --30
+INSERT INTO Genres(GenreName) Values('Psychological Horror') --31
+INSERT INTO Genres(GenreName) Values('Documentary') --32
+INSERT INTO Genres(GenreName) Values('Animation') --33
+INSERT INTO Genres(GenreName) Values('Dark Fantasy') --34
+INSERT INTO Genres(GenreName) Values('Romantic Comedy') --35
+INSERT INTO Genres(GenreName) Values('Serial Killer') --36
+INSERT INTO Genres(GenreName) Values('Sci-Fi Epic') --37
+INSERT INTO Genres(GenreName) Values('Epic') --38
+INSERT INTO Genres(GenreName) Values('Tragedy') --39
+INSERT INTO Genres(GenreName) Values('Drug Crime') --40
+INSERT INTO Genres(GenreName) Values('Computer Animation') --41
+INSERT INTO Genres(GenreName) Values('Supernatural Fantasy') --42
+INSERT INTO Genres(GenreName) Values('Teen Adventure') --43
+INSERT INTO Genres(GenreName) Values('Teen Comedy') --44
+INSERT INTO Genres(GenreName) Values('Teen Epic') --45
+INSERT INTO Genres(GenreName) Values('Action Epic') --46
+INSERT INTO Genres(GenreName) Values('Docudrama') --47
+INSERT INTO Genres(GenreName) Values('Historical Epic') --48
+INSERT INTO Genres(GenreName) Values('Period Drama') --49
+INSERT INTO Genres(GenreName) Values('Prison Drama') --50
+INSERT INTO Genres(GenreName) Values('Teen Fantasy') --51
+INSERT INTO Genres(GenreName) Values('Family') --52
+INSERT INTO Genres(GenreName) Values('Holiday') --53
 
-INSERT INTO Movies(MovieName, ReleaseYear, Length, Description, Rating, Image, Trailer, Director, Star, Writer, MultiDirectors, MultiStars, MultiWriters) Values('Iron Man', 2008, 126, 'After being held captive in an Afghan cave, billionaire engineer Tony Stark creates a unique weaponized suit of armor to fight evil.', -1, 'https://m.media-amazon.com/images/M/MV5BMTczNTI2ODUwOF5BMl5BanBnXkFtZTcwMTU0NTIzMw@@._V1_FMjpg_UX1000_.jpg', 'https://youtu.be/8ugaeA-nMTc?si=95Mfetqrv87fxv7Q', 'Jon Favreau', 'Robert Downey Jr., Gwyneth Paltrow, Terrence Howard', 'Mark Fergus, Hawk Ostby, Art Marcum', 0, 1, 1)
+INSERT INTO Movies(MovieName, ReleaseYear, Length, Description, Rating, Image, Trailer, Director, Star, Writer, MultiDirectors, MultiStars, MultiWriters) Values('Iron Man', 2008, 126, 'After being held captive in an Afghan cave, billionaire engineer Tony Stark creates a unique weaponized suit of armor to fight evil.', 7.7, 'https://m.media-amazon.com/images/M/MV5BMTczNTI2ODUwOF5BMl5BanBnXkFtZTcwMTU0NTIzMw@@._V1_FMjpg_UX1000_.jpg', 'https://youtu.be/8ugaeA-nMTc?si=95Mfetqrv87fxv7Q', 'Jon Favreau', 'Robert Downey Jr., Gwyneth Paltrow, Terrence Howard', 'Mark Fergus, Hawk Ostby, Art Marcum', 0, 1, 1)
 --Sci-Fi Epic
 INSERT INTO GenresToMovies(MovieID, GenreID) Values(1,37) 
 --Superhero
@@ -152,7 +155,7 @@ INSERT INTO GenresToMovies(MovieID, GenreID) Values(1,25)
 INSERT INTO GenresToMovies(MovieID, GenreID) Values(1,22)
 --Sci-Fi
 INSERT INTO GenresToMovies(MovieID, GenreID) Values(1,13)
-INSERT INTO Movies(MovieName, ReleaseYear, Length, Description, Rating, Image, Trailer, Director, Star, Writer, MultiDirectors, MultiStars, MultiWriters) Values('The Godfather', 1972, 175, 'The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.', -1, 'https://m.media-amazon.com/images/M/MV5BNGEwYjgwOGQtYjg5ZS00Njc1LTk2ZGEtM2QwZWQ2NjdhZTE5XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg', 'https://youtu.be/w3Wo6QiD3eU?si=uzCy5stqF3W9jVts', 'Francis Ford Coppola', 'Marlon Brando, Al Pacino, James Caan', 'Mario Puzo, Francis Ford Coppola', 0, 1, 1)
+INSERT INTO Movies(MovieName, ReleaseYear, Length, Description, Rating, Image, Trailer, Director, Star, Writer, MultiDirectors, MultiStars, MultiWriters) Values('The Godfather', 1972, 175, 'The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.', 6.7, 'https://m.media-amazon.com/images/M/MV5BNGEwYjgwOGQtYjg5ZS00Njc1LTk2ZGEtM2QwZWQ2NjdhZTE5XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg', 'https://youtu.be/w3Wo6QiD3eU?si=uzCy5stqF3W9jVts', 'Francis Ford Coppola', 'Marlon Brando, Al Pacino, James Caan', 'Mario Puzo, Francis Ford Coppola', 0, 1, 1)
 --Epic
 INSERT INTO GenresToMovies(MovieID, GenreID) Values(2,38)
 --Gangster
@@ -163,7 +166,7 @@ INSERT INTO GenresToMovies(MovieID, GenreID) Values(2,39)
 INSERT INTO GenresToMovies(MovieID, GenreID) Values(2,19)
 --Drama
 INSERT INTO GenresToMovies(MovieID, GenreID) Values(2,21)
-INSERT INTO Movies(MovieName, ReleaseYear, Length, Description, Rating, Image, Trailer, Director, Star, Writer, MultiDirectors, MultiStars, MultiWriters) Values('Pulp Fiction', 1994, 154, 'The lives of two mob hitmen, a boxer, a gangster and his wife, and a pair of diner bandits intertwine in four tales of violence and redemption.', -1, 'https://m.media-amazon.com/images/M/MV5BYTViYTE3ZGQtNDBlMC00ZTAyLTkyODMtZGRiZDg0MjA2YThkXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg', 'https://youtu.be/s7EdQ4FqbhY?si=oFUZl1vG1Kcad1h2', 'Quentin Tarantino', 'John Travolta, Uma Thurman, Samuel L. Jackson', 'Quentin Tarantino, Roger Avary', 0, 1, 1)
+INSERT INTO Movies(MovieName, ReleaseYear, Length, Description, Rating, Image, Trailer, Director, Star, Writer, MultiDirectors, MultiStars, MultiWriters) Values('Pulp Fiction', 1994, 154, 'The lives of two mob hitmen, a boxer, a gangster and his wife, and a pair of diner bandits intertwine in four tales of violence and redemption.', 5, 'https://m.media-amazon.com/images/M/MV5BYTViYTE3ZGQtNDBlMC00ZTAyLTkyODMtZGRiZDg0MjA2YThkXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg', 'https://youtu.be/s7EdQ4FqbhY?si=oFUZl1vG1Kcad1h2', 'Quentin Tarantino', 'John Travolta, Uma Thurman, Samuel L. Jackson', 'Quentin Tarantino, Roger Avary', 0, 1, 1)
 --Dark Comedy
 INSERT INTO GenresToMovies(MovieID, GenreID) Values(3,7)
 --Drug Crime
@@ -174,7 +177,7 @@ INSERT INTO GenresToMovies(MovieID, GenreID) Values(3,15)
 INSERT INTO GenresToMovies(MovieID, GenreID) Values(3,19)
 --Drama
 INSERT INTO GenresToMovies(MovieID, GenreID) Values(3,21)
-INSERT INTO Movies(MovieName, ReleaseYear, Length, Description, Rating, Image, Trailer, Director, Star, Writer, MultiDirectors, MultiStars, MultiWriters) Values('Spider-Man: Into the Spider-Verse', 2018, 117, 'Teen Miles Morales becomes the Spider-Man of his universe and must join with five spider-powered individuals from other dimensions to stop a threat for all realities.', -1, 'https://m.media-amazon.com/images/M/MV5BMjMwNDkxMTgzOF5BMl5BanBnXkFtZTgwNTkwNTQ3NjM@._V1_FMjpg_UX1000_.jpg', 'https://youtu.be/g4Hbz2jLxvQ?si=VXhc76ASqLjw19TD', 'Bob Persichetti, Peter Ramsey, Rodney Rothman', 'Shameik Moore, Jake Johnson, Hailee Steinfeld', 'Phil Lord, Rodney Rothman', 1, 1, 1)
+INSERT INTO Movies(MovieName, ReleaseYear, Length, Description, Rating, Image, Trailer, Director, Star, Writer, MultiDirectors, MultiStars, MultiWriters) Values('Spider-Man: Into the Spider-Verse', 2018, 117, 'Teen Miles Morales becomes the Spider-Man of his universe and must join with five spider-powered individuals from other dimensions to stop a threat for all realities.', 6.7, 'https://m.media-amazon.com/images/M/MV5BMjMwNDkxMTgzOF5BMl5BanBnXkFtZTgwNTkwNTQ3NjM@._V1_FMjpg_UX1000_.jpg', 'https://youtu.be/g4Hbz2jLxvQ?si=VXhc76ASqLjw19TD', 'Bob Persichetti, Peter Ramsey, Rodney Rothman', 'Shameik Moore, Jake Johnson, Hailee Steinfeld', 'Phil Lord, Rodney Rothman', 1, 1, 1)
 --Computer Animation
 INSERT INTO GenresToMovies(MovieID, GenreID) Values(4,41)
 --Superhero
@@ -185,7 +188,7 @@ INSERT INTO GenresToMovies(MovieID, GenreID) Values(4,42)
 INSERT INTO GenresToMovies(MovieID, GenreID) Values(4,43)
 --Teen Comedy
 INSERT INTO GenresToMovies(MovieID, GenreID) Values(4,44)
-INSERT INTO Movies(MovieName, ReleaseYear, Length, Description, Rating, Image, Trailer, Director, Star, Writer, MultiDirectors, MultiStars, MultiWriters) Values('The Batman', 2022, 176, 'When a sadistic serial killer begins murdering key political figures in Gotham, the Batman is forced to investigate the city''s hidden corruption and question his family''s involvement.', -1, 'https://m.media-amazon.com/images/M/MV5BMmU5NGJlMzAtMGNmOC00YjJjLTgyMzUtNjAyYmE4Njg5YWMyXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg', 'https://youtu.be/mqqft2x_Aa4?si=0c2fcENlkROEy09v', 'Jon Favreau', 'Robert Pattinson, Zoë Kravitz, Jeffrey Wright', 'Mark Fergus, Hawk Ostby, Art Marcum', 0, 1, 1)
+INSERT INTO Movies(MovieName, ReleaseYear, Length, Description, Rating, Image, Trailer, Director, Star, Writer, MultiDirectors, MultiStars, MultiWriters) Values('The Batman', 2022, 176, 'When a sadistic serial killer begins murdering key political figures in Gotham, the Batman is forced to investigate the city''s hidden corruption and question his family''s involvement.', 4, 'https://m.media-amazon.com/images/M/MV5BMmU5NGJlMzAtMGNmOC00YjJjLTgyMzUtNjAyYmE4Njg5YWMyXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg', 'https://youtu.be/mqqft2x_Aa4?si=0c2fcENlkROEy09v', 'Jon Favreau', 'Robert Pattinson, Zoë Kravitz, Jeffrey Wright', 'Mark Fergus, Hawk Ostby, Art Marcum', 0, 1, 1)
 --Action Epic
 INSERT INTO GenresToMovies(MovieID, GenreID) Values(5,46)
 --Epic
@@ -196,7 +199,7 @@ INSERT INTO GenresToMovies(MovieID, GenreID) Values(5,36)
 INSERT INTO GenresToMovies(MovieID, GenreID) Values(5,1)
 --Action
 INSERT INTO GenresToMovies(MovieID, GenreID) Values(5,25)
-INSERT INTO Movies(MovieName, ReleaseYear, Length, Description, Rating, Image, Trailer, Director, Star, Writer, MultiDirectors, MultiStars, MultiWriters) Values(' Schindler''s List', 1993, 195, 'In German-occupied Poland during World War II, industrialist Oskar Schindler gradually becomes concerned for his Jewish workforce after witnessing their persecution by the Nazis.', -1, 'https://m.media-amazon.com/images/M/MV5BNjM1ZDQxYWUtMzQyZS00MTE1LWJmZGYtNGUyNTdlYjM3ZmVmXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg', 'https://youtu.be/gG22XNhtnoY?si=QHkIZHY257CwQ8BE', 'Steven Spielberg', 'Liam Neeson, Ralph Fiennes, Ben Kingsley', 'Thomas Keneally, Steven Zaillian', 0, 1, 1)
+INSERT INTO Movies(MovieName, ReleaseYear, Length, Description, Rating, Image, Trailer, Director, Star, Writer, MultiDirectors, MultiStars, MultiWriters) Values('Schindler''s List', 1993, 195, 'In German-occupied Poland during World War II, industrialist Oskar Schindler gradually becomes concerned for his Jewish workforce after witnessing their persecution by the Nazis.', 6, 'https://m.media-amazon.com/images/M/MV5BNjM1ZDQxYWUtMzQyZS00MTE1LWJmZGYtNGUyNTdlYjM3ZmVmXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg', 'https://youtu.be/gG22XNhtnoY?si=QHkIZHY257CwQ8BE', 'Steven Spielberg', 'Liam Neeson, Ralph Fiennes, Ben Kingsley', 'Thomas Keneally, Steven Zaillian', 0, 1, 1)
 --Docudrama
 INSERT INTO GenresToMovies(MovieID, GenreID) Values(6,47)
 --Epic
@@ -207,6 +210,17 @@ INSERT INTO GenresToMovies(MovieID, GenreID) Values(6,48)
 INSERT INTO GenresToMovies(MovieID, GenreID) Values(6,49)
 --Prison Drama
 INSERT INTO GenresToMovies(MovieID, GenreID) Values(6,50)
+INSERT INTO Movies(MovieName, ReleaseYear, Length, Description, Rating, Image, Trailer, Director, Star, Writer, MultiDirectors, MultiStars, MultiWriters) Values('Harry Potter and the Sorcerer''s Stone', 2001, 152, 'An orphaned boy enrolls in a school of wizardry, where he learns the truth about himself, his family and the terrible evil that haunts the magical world.', -1, 'https://m.media-amazon.com/images/M/MV5BNTU1MzgyMDMtMzBlZS00YzczLThmYWEtMjU3YmFlOWEyMjE1XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg', 'https://youtu.be/l91Km49W9qI?si=Sbi_cqLJ9ghp7kgy', 'Chris Columbus', 'Daniel Radcliffe, Rupert Grint, Emma Watson', 'J.K. Rowling, Steve Kloves', 0, 1, 1)
+--Teen Fantasy
+INSERT INTO GenresToMovies(MovieID, GenreID) Values(7,51)
+--Adventure 
+INSERT INTO GenresToMovies(MovieID, GenreID) Values(7,22)
+--Family
+INSERT INTO GenresToMovies(MovieID, GenreID) Values(7,52)
+--Fantasy
+INSERT INTO GenresToMovies(MovieID, GenreID) Values(7,17)
+--Holiday
+INSERT INTO GenresToMovies(MovieID, GenreID) Values(7,53)
 
 INSERT INTO Reviews(UserID, MovieID, Rating, Description, ReviewDate) Values(1, 1, 9, 'A gripping experience from start to finish. The pacing was tight, and the emotional beats really landed. Highly recommended.', '2025-01-03')
 INSERT INTO Reviews(UserID, MovieID, Rating, Description, ReviewDate) Values(2, 1, 6, 'It had its moments, but overall felt a bit uneven. Some strong scenes, though, and decent performances.', '2025-01-17')
