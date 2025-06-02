@@ -478,16 +478,14 @@ namespace MediaReviewerServer.Controllers
         {
             try
             {
-                //Check if who is logged in
                 string? userEmail = HttpContext.Session.GetString("loggedInUser");
                 if (string.IsNullOrEmpty(userEmail))
                 {
                     return Unauthorized("User is not logged in");
                 }
 
-                //Get model user class from DB with matching email. 
                 Models.User? user = context.GetUser(userEmail);
-                //Clear the tracking of all objects to avoid double tracking
+
                 context.ChangeTracker.Clear();
 
                 Models.User User = userDto.GetModels();
@@ -496,7 +494,6 @@ namespace MediaReviewerServer.Controllers
 
                 context.SaveChanges();
 
-                //Task was updated!
                 return Ok();
             }
             catch (Exception ex)
